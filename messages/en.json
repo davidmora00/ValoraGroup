@@ -1,5 +1,8 @@
 {
   "siteName": "Valora Group",
+  "marquee": {
+    "items": ["Automation", "Websites", "Modernization", "AI assistants", "Pricing & valuations", "Integrations"]
+  },
   "meta": {
     "home": {
       "title": "Valora Group — AI that solves your everyday business pain points",
@@ -30,13 +33,7 @@
     "primaryCta": "Find your pain points",
     "secondaryCta": "See the Fernando Piero story",
     "note": "We start by understanding the problem — not by selling a product.",
-    "reach": "AI solutions for your business — delivered across the globe.",
-    "tags": [
-      "Manual updates",
-      "Questions that pull staff away",
-      "After-hours pileups",
-      "Tools that don’t talk to each other"
-    ]
+    "reach": "AI solutions for your business — delivered across the globe."
   },
   "painPoints": {
     "eyebrow": "The problem",
@@ -242,6 +239,8 @@
       "success": "We’ll be in touch shortly to dig into the details.",
       "errorTitle": "Something went wrong.",
       "error": "Please try again, or email us directly.",
+      "consent": "By submitting, you agree to our",
+      "privacyLink": "Privacy Policy",
       "validation": {
         "name": "Please enter your name.",
         "email": "Please enter a valid email.",
@@ -260,7 +259,8 @@
     "company": "Company",
     "madeWith": "This site runs on the same kind of AI we build for clients — ask the assistant.",
     "rights": "All rights reserved.",
-    "backToTop": "Back to top"
+    "backToTop": "Back to top",
+    "privacy": "Privacy"
   },
   "chat": {
     "launcher": "Ask Valora",

@@ -13,9 +13,10 @@ export function Approach() {
   }>;
 
   return (
-    <Section id="approach" className="border-t border-line/60">
+    <Section id="approach">
       <Container>
         <SectionHeading
+          index="02"
           eyebrow={t("eyebrow")}
           title={t("title")}
           lead={t("lead")}

@@ -1,5 +1,8 @@
 {
   "siteName": "Valora Group",
+  "marquee": {
+    "items": ["Automatización", "Sitios web", "Modernización", "Asistentes de IA", "Precios y valoraciones", "Integraciones"]
+  },
   "meta": {
     "home": {
       "title": "Valora Group — IA que resuelve los problemas cotidianos de tu negocio",
@@ -30,13 +33,7 @@
     "primaryCta": "Encuentra tus puntos de fricción",
     "secondaryCta": "Conoce el caso Fernando Piero",
     "note": "Empezamos por entender el problema — no por vender un producto.",
-    "reach": "Soluciones de IA para tu negocio — en cualquier parte del mundo.",
-    "tags": [
-      "Actualizaciones manuales",
-      "Preguntas que distraen al equipo",
-      "Tareas acumuladas fuera de horario",
-      "Herramientas que no se hablan"
-    ]
+    "reach": "Soluciones de IA para tu negocio — en cualquier parte del mundo."
   },
   "painPoints": {
     "eyebrow": "El problema",
@@ -242,6 +239,8 @@
       "success": "Te contactaremos muy pronto para entrar en detalle.",
       "errorTitle": "Algo salió mal.",
       "error": "Inténtalo de nuevo, o escríbenos directamente.",
+      "consent": "Al enviar, aceptas nuestra",
+      "privacyLink": "Política de Privacidad",
       "validation": {
         "name": "Ingresa tu nombre.",
         "email": "Ingresa un correo válido.",
@@ -260,7 +259,8 @@
     "company": "Compañía",
     "madeWith": "Este sitio funciona con el mismo tipo de IA que construimos para clientes — pregúntale al asistente.",
     "rights": "Todos los derechos reservados.",
-    "backToTop": "Volver arriba"
+    "backToTop": "Volver arriba",
+    "privacy": "Privacidad"
   },
   "chat": {
     "launcher": "Pregúntale a Valora",

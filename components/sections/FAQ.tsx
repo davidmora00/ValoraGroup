@@ -12,7 +12,7 @@ export function FAQ() {
   return (
     <Section id="faq">
       <Container>
-        <SectionHeading eyebrow={t("eyebrow")} title={t("title")} />
+        <SectionHeading index="06" eyebrow={t("eyebrow")} title={t("title")} />
 
         <div className="mx-auto mt-14 max-w-3xl">
           <Reveal>

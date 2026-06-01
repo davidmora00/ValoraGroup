@@ -97,6 +97,15 @@ The interactive globe is [`components/sections/Globe.tsx`](components/sections/G
 - **Cities & connections** — edit the `CITIES` array and `ARC_PAIRS` (index pairs) in `GlobeImpl.tsx`.
 - It auto-rotates and respects `prefers-reduced-motion`.
 
+## Database (Supabase) — optional
+
+Contact leads are emailed via Resend and, when Supabase is configured, also stored in a locked-down `leads` table (the foundation for a future login dashboard). Without Supabase keys, the form just emails.
+
+1. Create a project at [supabase.com](https://supabase.com).
+2. In the **SQL Editor**, run [`supabase/migrations/0001_create_leads.sql`](supabase/migrations/0001_create_leads.sql) — creates the table and enables RLS.
+3. **Project Settings → API**: copy the **Project URL** → `NEXT_PUBLIC_SUPABASE_URL`, and the **`service_role`** key → `SUPABASE_SERVICE_ROLE_KEY` (server-only secret — never expose it).
+4. Leads insert server-side via the service-role key (`lib/supabase.ts`). RLS is on with **no public policies**, so the anon key has zero access. When you build the dashboard, add a `select` policy for authenticated admins (example in the SQL file).
+
 ## Build & deploy (Vercel)
 
 ```bash

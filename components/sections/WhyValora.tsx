@@ -16,9 +16,9 @@ export function WhyValora() {
   return (
     <Section id="why">
       <Container>
-        <SectionHeading eyebrow={t("eyebrow")} title={t("title")} lead={t("lead")} />
+        <SectionHeading index="05" eyebrow={t("eyebrow")} title={t("title")} lead={t("lead")} />
 
-        <div className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+        <div className="mt-16 grid gap-x-12 gap-y-12 sm:mt-20 sm:grid-cols-2">
           {points.map((point, i) => (
             <Reveal
               as="div"

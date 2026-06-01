@@ -2,6 +2,7 @@ import { z } from "zod";
 import { Resend } from "resend";
 import { getClientIp, rateLimit } from "@/lib/rate-limit";
 import { isAllowedOrigin, verifyTurnstile } from "@/lib/security";
+import { getSupabaseAdmin } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
@@ -67,34 +68,53 @@ export async function POST(req: Request) {
     return Response.json({ ok: false, error: "captcha" }, { status: 403 });
   }
 
+  const supabase = getSupabaseAdmin();
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL;
   const from = process.env.CONTACT_FROM_EMAIL ?? "Valora Group <onboarding@resend.dev>";
 
-  // Not configured (e.g. local dev): capture a PII-redacted note so nothing
+  // Nothing configured (e.g. local dev): capture a PII-redacted note so nothing
   // sensitive hits the logs, and report success so the form UX still works.
-  if (!apiKey || !to) {
+  if (!supabase && !(apiKey && to)) {
     console.warn("[contact] not configured — lead received (redacted):", {
       emailDomain: data.email.split("@")[1] ?? "unknown",
       hasCompany: Boolean(data.company),
       messageLength: data.message.length,
       locale: data.locale,
     });
-    return Response.json({ ok: true, delivered: false });
+    return Response.json({ ok: true, delivered: false, stored: false });
   }
 
-  const subject = `New inquiry — ${data.name}${data.company ? ` (${data.company})` : ""}`;
-  const lines = [
-    `Name:    ${data.name}`,
-    `Email:   ${data.email}`,
-    `Company: ${data.company || "—"}`,
-    `Locale:  ${data.locale}`,
-    "",
-    "Message:",
-    data.message,
-  ].join("\n");
+  let stored = false;
+  let emailed = false;
 
-  const html = `
+  // 6a) Persist the lead to Supabase (locked-down `leads` table).
+  if (supabase) {
+    const { error } = await supabase.from("leads").insert({
+      name: data.name,
+      email: data.email,
+      company: data.company || null,
+      message: data.message,
+      locale: data.locale,
+      source: "website",
+    });
+    if (error) console.error("[contact] Supabase insert failed:", error.message);
+    else stored = true;
+  }
+
+  // 6b) Email the lead via Resend.
+  if (apiKey && to) {
+    const subject = `New inquiry — ${data.name}${data.company ? ` (${data.company})` : ""}`;
+    const lines = [
+      `Name:    ${data.name}`,
+      `Email:   ${data.email}`,
+      `Company: ${data.company || "—"}`,
+      `Locale:  ${data.locale}`,
+      "",
+      "Message:",
+      data.message,
+    ].join("\n");
+    const html = `
     <div style="font-family:ui-sans-serif,system-ui,sans-serif;max-width:560px;margin:auto;color:#111">
       <h2 style="margin:0 0 16px;font-size:18px">New inquiry from valoragroup.ai</h2>
       <table style="width:100%;border-collapse:collapse;font-size:14px">
@@ -106,24 +126,26 @@ export async function POST(req: Request) {
       <p style="margin:16px 0 6px;color:#666;font-size:14px">Message</p>
       <div style="white-space:pre-wrap;background:#f6f5f2;border-radius:10px;padding:14px;font-size:14px;line-height:1.55">${escapeHtml(data.message)}</div>
     </div>`;
-
-  try {
-    const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({
-      from,
-      to,
-      replyTo: data.email,
-      subject,
-      text: lines,
-      html,
-    });
-    if (error) {
-      console.error("[contact] Resend send failed");
-      return Response.json({ ok: false, error: "send_failed" }, { status: 502 });
+    try {
+      const resend = new Resend(apiKey);
+      const { error } = await resend.emails.send({
+        from,
+        to,
+        replyTo: data.email,
+        subject,
+        text: lines,
+        html,
+      });
+      if (error) console.error("[contact] Resend send failed");
+      else emailed = true;
+    } catch {
+      console.error("[contact] unexpected send error");
     }
-    return Response.json({ ok: true, delivered: true });
-  } catch {
-    console.error("[contact] unexpected send error");
+  }
+
+  // 7) Succeed if at least one delivery path worked.
+  if (!stored && !emailed) {
     return Response.json({ ok: false, error: "send_failed" }, { status: 502 });
   }
+  return Response.json({ ok: true, stored, emailed });
 }

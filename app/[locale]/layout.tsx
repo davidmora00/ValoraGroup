@@ -7,6 +7,7 @@ import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ChatWidget } from "@/components/chat/ChatWidget";
+import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import "@/app/globals.css";
 
 const fraunces = Fraunces({
@@ -88,6 +89,7 @@ export default async function LocaleLayout({
     >
       <body className="min-h-dvh bg-canvas text-ink antialiased">
         <div className="grain" aria-hidden />
+        <ScrollProgress />
         <a
           href="#main"
           className="sr-only rounded-full focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-gold focus:px-4 focus:py-2 focus:text-canvas"

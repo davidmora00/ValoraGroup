@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
+import { Stat } from "@/components/ui/Stat";
 import { buttonVariants } from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
 
@@ -17,101 +18,90 @@ export function CaseStudy() {
   const stats = t.raw("stats") as Array<{ value: string; label: string }>;
 
   return (
-    <Section id="work" className="border-t border-line/60">
+    <Section id="work">
       <Container>
-        <Reveal>
-          <div className="relative overflow-hidden rounded-3xl border border-line surface-card p-8 shadow-2xl shadow-black/40 sm:p-12">
-            <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-              <div className="absolute right-[-10%] top-[-30%] h-[460px] w-[640px] rounded-full bg-[radial-gradient(circle,rgba(216,178,122,0.12),transparent_70%)] blur-2xl" />
-            </div>
-
-            {/* Header — client identity */}
-            <Eyebrow>{t("eyebrow")}</Eyebrow>
-            <div className="mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-              <h3 className="font-display text-2xl text-ink sm:text-3xl">{t("client")}</h3>
-              <span className="font-mono text-xs uppercase tracking-wider text-faint">
-                {t("clientMeta")}
-              </span>
-            </div>
-
+        <div className="grid gap-14 lg:grid-cols-[0.82fr_1fr] lg:gap-20">
+          {/* Sticky identity panel — stays pinned while the solutions scroll past. */}
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <Reveal>
+              <Eyebrow>04 · {t("eyebrow")}</Eyebrow>
+            </Reveal>
             <Reveal delay={0.05}>
-              <p className="mt-7 max-w-3xl text-balance font-display text-3xl leading-[1.1] tracking-tight text-ink sm:text-4xl">
+              <div className="mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                <h3 className="font-display text-2xl text-ink sm:text-3xl">{t("client")}</h3>
+                <span className="font-mono text-xs uppercase tracking-wider text-faint">
+                  {t("clientMeta")}
+                </span>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-6 text-balance font-display text-3xl leading-[1.08] tracking-tight text-ink sm:text-4xl">
                 {t("title")}
               </p>
             </Reveal>
-            <Reveal delay={0.1}>
-              <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-muted">
+            <Reveal delay={0.15}>
+              <p className="mt-5 max-w-md text-pretty text-lg leading-relaxed text-muted">
                 {t("lead")}
               </p>
             </Reveal>
-
-            {/* Stats row */}
-            <Reveal delay={0.12}>
-              <dl className="mt-12 grid grid-cols-3 divide-x divide-line rounded-2xl border border-line-soft bg-white/[0.02]">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="px-4 py-6 text-center sm:px-6 sm:py-7">
-                    <dt className="sr-only">{stat.label}</dt>
+            <Reveal delay={0.2}>
+              <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-line pt-8">
+                {stats.map((s) => (
+                  <div key={s.label}>
+                    <dt className="sr-only">{s.label}</dt>
                     <dd>
-                      <span className="block font-display text-3xl text-gold sm:text-4xl">
-                        {stat.value}
-                      </span>
-                      <span className="mt-1 block text-xs leading-snug text-faint">
-                        {stat.label}
-                      </span>
+                      <Stat
+                        value={s.value}
+                        className="block font-display text-3xl text-gold sm:text-4xl"
+                      />
+                      <span className="mt-1 block text-xs leading-snug text-faint">{s.label}</span>
                     </dd>
                   </div>
                 ))}
               </dl>
             </Reveal>
-
-            <div className="rule-fade mt-12" />
-
-            {/* Solutions — problem → solution */}
-            <ul className="mt-12 grid gap-8 lg:grid-cols-3 lg:gap-10">
-              {solutions.map((item, i) => (
-                <Reveal
-                  as="li"
-                  key={item.title}
-                  delay={Math.min(i, 6) * 0.06}
-                  className="flex flex-col"
-                >
-                  <h4 className="font-display text-lg text-ink">{item.title}</h4>
-                  <p className="mt-3 text-sm leading-relaxed text-faint">{item.problem}</p>
-                  <div className="mt-4 flex gap-3">
-                    <span aria-hidden className="font-display text-base leading-relaxed text-gold">
-                      &rarr;
-                    </span>
-                    <p className="text-pretty text-sm leading-relaxed text-muted">
-                      {item.solution}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </ul>
-
-            {/* Outcome */}
-            <Reveal delay={0.1}>
-              <blockquote className="mt-12 border-l-2 border-gold pl-5">
-                <p className="text-pretty font-display text-lg italic leading-relaxed text-ink/90">
-                  {t("outcome")}
-                </p>
-              </blockquote>
-            </Reveal>
-
-            {/* CTA */}
-            <Reveal delay={0.14}>
-              <div className="mt-10">
-                <Link
-                  href="/work/fernando-piero"
-                  className={buttonVariants({ variant: "secondary", size: "lg" })}
-                >
-                  {t("cta")}
-                  <ArrowRight className="size-4" />
-                </Link>
-              </div>
+            <Reveal delay={0.25}>
+              <Link
+                href="/work/fernando-piero"
+                className={`${buttonVariants({ variant: "secondary", size: "lg" })} mt-10`}
+              >
+                {t("cta")}
+                <ArrowRight className="size-4" />
+              </Link>
             </Reveal>
           </div>
-        </Reveal>
+
+          {/* Scrolling solutions — problem → solution, revealing one by one. */}
+          <ol>
+            {solutions.map((item, i) => (
+              <li
+                key={item.title}
+                className="border-t border-line py-10 first:border-t-0 first:pt-0 lg:py-14"
+              >
+                <Reveal>
+                  <span className="font-mono text-xs tracking-widest text-gold">{`0${i + 1}`}</span>
+                  <h4 className="mt-4 font-display text-xl text-ink sm:text-2xl">{item.title}</h4>
+                  <p className="mt-4 text-pretty leading-relaxed text-faint">{item.problem}</p>
+                  <div className="mt-4 flex gap-3">
+                    <span aria-hidden className="font-display text-lg leading-relaxed text-gold">
+                      →
+                    </span>
+                    <p className="text-pretty leading-relaxed text-muted">{item.solution}</p>
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+            <li className="border-t border-line py-10 lg:py-14">
+              <Reveal>
+                <blockquote className="border-l-2 border-gold pl-6">
+                  <p className="text-pretty font-display text-xl italic leading-relaxed text-ink/90">
+                    {t("outcome")}
+                  </p>
+                </blockquote>
+              </Reveal>
+            </li>
+          </ol>
+        </div>
       </Container>
     </Section>
   );

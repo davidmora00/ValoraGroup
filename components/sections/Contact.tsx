@@ -12,6 +12,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
+import { Link } from "@/i18n/navigation";
 
 const fieldClass =
   "w-full rounded-xl border border-line bg-surface-2 px-4 py-3 text-sm text-ink outline-none transition-colors placeholder:text-faint focus:border-gold/60";
@@ -75,7 +76,7 @@ export function Contact() {
   }
 
   return (
-    <Section id="contact" className="border-t border-line/60">
+    <Section id="contact">
       <Container>
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div>
@@ -184,6 +185,17 @@ export function Contact() {
                     {isSubmitting ? t("form.sending") : t("form.submit")}
                     {!isSubmitting && <ArrowRight className="size-4" />}
                   </button>
+
+                  <p className="text-xs leading-relaxed text-faint">
+                    {t("form.consent")}{" "}
+                    <Link
+                      href="/privacy"
+                      className="text-muted underline underline-offset-2 transition-colors hover:text-ink"
+                    >
+                      {t("form.privacyLink")}
+                    </Link>
+                    .
+                  </p>
                 </form>
               )}
             </div>

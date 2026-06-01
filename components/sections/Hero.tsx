@@ -3,7 +3,9 @@ import { ArrowRight, Globe as GlobeIcon } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { AnimatedHeading } from "@/components/ui/AnimatedHeading";
 import { buttonVariants } from "@/components/ui/Button";
+import { Magnetic } from "@/components/ui/Magnetic";
 import { Globe } from "./Globe";
 
 export function Hero() {
@@ -29,12 +31,11 @@ export function Hero() {
           <Reveal>
             <Eyebrow>{t("eyebrow")}</Eyebrow>
           </Reveal>
-          <Reveal delay={0.05}>
-            <h1 className="mt-6 text-balance font-display text-4xl leading-[1.04] tracking-tight sm:text-5xl md:text-6xl">
-              {t("titleA")}
-              <span className="text-gold-gradient">{t("titleB")}</span>
-            </h1>
-          </Reveal>
+          <AnimatedHeading
+            lead={t("titleA")}
+            accent={t("titleB")}
+            className="mt-6 text-balance font-display text-[2.7rem] leading-[1.03] tracking-[-0.02em] sm:text-5xl md:text-6xl"
+          />
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-lg text-pretty text-lg leading-relaxed text-muted">
               {t("lead")}
@@ -42,19 +43,23 @@ export function Hero() {
           </Reveal>
           <Reveal delay={0.15}>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a
-                href={`/${locale}#contact`}
-                className={buttonVariants({ variant: "primary", size: "lg" })}
-              >
-                {t("primaryCta")}
-                <ArrowRight className="size-4" />
-              </a>
-              <a
-                href={`/${locale}#work`}
-                className={buttonVariants({ variant: "secondary", size: "lg" })}
-              >
-                {t("secondaryCta")}
-              </a>
+              <Magnetic className="w-fit">
+                <a
+                  href={`/${locale}#contact`}
+                  className={buttonVariants({ variant: "primary", size: "lg" })}
+                >
+                  {t("primaryCta")}
+                  <ArrowRight className="size-4" />
+                </a>
+              </Magnetic>
+              <Magnetic className="w-fit">
+                <a
+                  href={`/${locale}#work`}
+                  className={buttonVariants({ variant: "secondary", size: "lg" })}
+                >
+                  {t("secondaryCta")}
+                </a>
+              </Magnetic>
             </div>
           </Reveal>
           <Reveal delay={0.2}>

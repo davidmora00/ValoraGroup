@@ -11,7 +11,7 @@ export function Section({
   className?: string;
 }) {
   return (
-    <section id={id} className={cn("relative scroll-mt-24 py-24 sm:py-32", className)}>
+    <section id={id} className={cn("relative scroll-mt-24 py-28 sm:py-40", className)}>
       {children}
     </section>
   );

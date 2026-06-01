@@ -8,6 +8,7 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
+import { Stat } from "@/components/ui/Stat";
 import { buttonVariants } from "@/components/ui/Button";
 
 export function generateStaticParams() {
@@ -101,9 +102,10 @@ function CaseStudyContent() {
                 <div key={s.label} className="px-2 py-6 text-center sm:px-6">
                   <dt className="sr-only">{s.label}</dt>
                   <dd>
-                    <span className="block font-display text-4xl text-gold sm:text-5xl">
-                      {s.value}
-                    </span>
+                    <Stat
+                      value={s.value}
+                      className="block font-display text-4xl text-gold sm:text-5xl"
+                    />
                     <span className="mt-2 block text-sm text-faint">{s.label}</span>
                   </dd>
                 </div>

@@ -16,7 +16,7 @@
   /* Text */
   --color-ink: #f6f4ef;
   --color-muted: #a7a29b;
-  --color-faint: #6f6a63;
+  --color-faint: #8c857b; /* tuned for WCAG AA (~5.4:1) on the ink canvas */
 
   /* Accent — champagne gold */
   --color-gold: #d8b27a;
@@ -141,6 +141,12 @@
   pointer-events: none;
   opacity: 0.038;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

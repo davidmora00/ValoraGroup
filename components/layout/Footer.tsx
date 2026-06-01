@@ -73,9 +73,17 @@ export function Footer() {
           <p className="text-xs text-faint">
             © {year} {t("siteName")}. {t("footer.rights")}
           </p>
-          <a href="#top" className="text-xs text-faint transition-colors hover:text-ink">
-            {t("footer.backToTop")} ↑
-          </a>
+          <div className="flex items-center gap-5">
+            <Link
+              href="/privacy"
+              className="text-xs text-faint transition-colors hover:text-ink"
+            >
+              {t("footer.privacy")}
+            </Link>
+            <a href="#top" className="text-xs text-faint transition-colors hover:text-ink">
+              {t("footer.backToTop")} ↑
+            </a>
+          </div>
         </div>
       </Container>
     </footer>
