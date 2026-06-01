@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { Resend } from "resend";
 import { getClientIp, rateLimit } from "@/lib/rate-limit";
+import { isAllowedOrigin, verifyTurnstile } from "@/lib/security";
 
 export const dynamic = "force-dynamic";
 
@@ -12,6 +13,7 @@ const schema = z.object({
   // Honeypot: real users never see/fill this; bots do. Must stay empty.
   website: z.string().max(0).optional().default(""),
   locale: z.enum(["en", "es"]).optional().default("en"),
+  turnstileToken: z.string().max(4096).optional(),
 });
 
 function escapeHtml(s: string): string {
@@ -23,7 +25,17 @@ function escapeHtml(s: string): string {
 }
 
 export async function POST(req: Request) {
-  const rl = rateLimit(`contact:${getClientIp(req)}`, { limit: 5, windowMs: 60_000 });
+  // 1) Same-origin guard.
+  if (!isAllowedOrigin(req)) {
+    return Response.json({ ok: false, error: "forbidden" }, { status: 403 });
+  }
+
+  // 2) Rate limit (per IP).
+  const rl = await rateLimit(getClientIp(req), {
+    limit: 5,
+    windowMs: 60_000,
+    name: "contact-ip",
+  });
   if (!rl.ok) {
     return Response.json(
       { ok: false, error: "rate_limited" },
@@ -31,13 +43,13 @@ export async function POST(req: Request) {
     );
   }
 
+  // 3) Validate.
   let json: unknown;
   try {
     json = await req.json();
   } catch {
     return Response.json({ ok: false, error: "bad_request" }, { status: 400 });
   }
-
   const parsed = schema.safeParse(json);
   if (!parsed.success) {
     return Response.json(
@@ -47,22 +59,25 @@ export async function POST(req: Request) {
   }
   const data = parsed.data;
 
-  // Honeypot tripped → silently accept without doing anything.
+  // 4) Honeypot tripped → silently accept without doing anything.
   if (data.website) return Response.json({ ok: true });
+
+  // 5) Bot protection (skipped automatically if Turnstile isn't configured).
+  if (!(await verifyTurnstile(data.turnstileToken, getClientIp(req)))) {
+    return Response.json({ ok: false, error: "captcha" }, { status: 403 });
+  }
 
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL;
   const from = process.env.CONTACT_FROM_EMAIL ?? "Valora Group <onboarding@resend.dev>";
 
-  // Not configured (e.g. local dev without keys): log the lead so it isn't lost,
-  // and report success so the form UX still works. Set RESEND_API_KEY +
-  // CONTACT_TO_EMAIL to actually deliver email.
+  // Not configured (e.g. local dev): capture a PII-redacted note so nothing
+  // sensitive hits the logs, and report success so the form UX still works.
   if (!apiKey || !to) {
-    console.warn("[contact] RESEND not configured — lead captured to logs only:", {
-      name: data.name,
-      email: data.email,
-      company: data.company,
-      message: data.message,
+    console.warn("[contact] not configured — lead received (redacted):", {
+      emailDomain: data.email.split("@")[1] ?? "unknown",
+      hasCompany: Boolean(data.company),
+      messageLength: data.message.length,
       locale: data.locale,
     });
     return Response.json({ ok: true, delivered: false });
@@ -103,12 +118,12 @@ export async function POST(req: Request) {
       html,
     });
     if (error) {
-      console.error("[contact] Resend error:", error);
+      console.error("[contact] Resend send failed");
       return Response.json({ ok: false, error: "send_failed" }, { status: 502 });
     }
     return Response.json({ ok: true, delivered: true });
-  } catch (err) {
-    console.error("[contact] unexpected error:", err);
+  } catch {
+    console.error("[contact] unexpected send error");
     return Response.json({ ok: false, error: "send_failed" }, { status: 502 });
   }
 }

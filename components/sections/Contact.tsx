@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -11,6 +11,7 @@ import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
 const fieldClass =
   "w-full rounded-xl border border-line bg-surface-2 px-4 py-3 text-sm text-ink outline-none transition-colors placeholder:text-faint focus:border-gold/60";
@@ -19,6 +20,9 @@ export function Contact() {
   const t = useTranslations("contact");
   const locale = useLocale();
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [token, setToken] = useState("");
+  const turnstileRef = useRef<TurnstileInstance | null>(null);
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   const schema = useMemo(
     () =>
@@ -52,7 +56,7 @@ export function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, locale }),
+        body: JSON.stringify({ ...values, locale, turnstileToken: token }),
       });
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean };
       if (res.ok && data.ok) {
@@ -63,6 +67,10 @@ export function Contact() {
       }
     } catch {
       setStatus("error");
+    } finally {
+      // Turnstile tokens are single-use — reset so a retry gets a fresh one.
+      turnstileRef.current?.reset();
+      setToken("");
     }
   }
 
@@ -157,9 +165,20 @@ export function Contact() {
                     </div>
                   ) : null}
 
+                  {siteKey ? (
+                    <Turnstile
+                      ref={turnstileRef}
+                      siteKey={siteKey}
+                      onSuccess={setToken}
+                      onError={() => setToken("")}
+                      onExpire={() => setToken("")}
+                      options={{ theme: "dark", size: "flexible" }}
+                    />
+                  ) : null}
+
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || (Boolean(siteKey) && !token)}
                     className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-gold px-6 text-sm font-medium text-canvas shadow-[0_10px_34px_-14px_rgba(216,178,122,0.65)] transition-all hover:bg-gold-soft disabled:opacity-60 sm:w-auto"
                   >
                     {isSubmitting ? t("form.sending") : t("form.submit")}

@@ -2,6 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
 import { ASSISTANT_SYSTEM_PROMPT } from "@/lib/valora-knowledge";
 import { getClientIp, rateLimit } from "@/lib/rate-limit";
+import { isAllowedOrigin } from "@/lib/security";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
@@ -9,6 +10,8 @@ export const maxDuration = 30;
 // Default to a fast, cost-efficient model for a public chat widget. Swap to
 // claude-opus-4-8 via ANTHROPIC_MODEL for maximum quality.
 const MODEL = process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-6";
+// Global daily cap across all callers — a hard guardrail on the AI bill.
+const CHAT_DAILY_LIMIT = Number(process.env.CHAT_DAILY_LIMIT ?? 2000);
 
 const bodySchema = z.object({
   messages: z
@@ -20,26 +23,16 @@ const bodySchema = z.object({
     )
     .min(1)
     .max(24)
-    // The Messages API requires the conversation to start with a user turn.
     .refine((m) => m[0]?.role === "user", "First message must be from the user"),
 });
 
 export async function POST(req: Request) {
-  // 1) Rate limit (per IP).
-  const rl = rateLimit(`chat:${getClientIp(req)}`, { limit: 20, windowMs: 60_000 });
-  if (!rl.ok) {
-    return Response.json(
-      { error: "rate_limited" },
-      { status: 429, headers: { "Retry-After": String(rl.retryAfter) } },
-    );
+  // 1) Same-origin guard.
+  if (!isAllowedOrigin(req)) {
+    return Response.json({ error: "forbidden" }, { status: 403 });
   }
 
-  // 2) Not configured yet — let the client show the "offline" message.
-  if (!process.env.ANTHROPIC_API_KEY) {
-    return Response.json({ error: "offline" }, { status: 503 });
-  }
-
-  // 3) Validate input.
+  // 2) Validate input (before spending rate-limit budget).
   let json: unknown;
   try {
     json = await req.json();
@@ -51,10 +44,39 @@ export async function POST(req: Request) {
     return Response.json({ error: "bad_request" }, { status: 400 });
   }
 
+  // 3) Rate limit: per-IP, then a global daily cap.
+  const perIp = await rateLimit(getClientIp(req), {
+    limit: 20,
+    windowMs: 60_000,
+    name: "chat-ip",
+  });
+  if (!perIp.ok) {
+    return Response.json(
+      { error: "rate_limited" },
+      { status: 429, headers: { "Retry-After": String(perIp.retryAfter) } },
+    );
+  }
+  const global = await rateLimit("all", {
+    limit: CHAT_DAILY_LIMIT,
+    windowMs: 86_400_000,
+    name: "chat-global",
+  });
+  if (!global.ok) {
+    return Response.json(
+      { error: "rate_limited" },
+      { status: 429, headers: { "Retry-After": String(global.retryAfter) } },
+    );
+  }
+
+  // 4) Not configured yet — let the client show the "offline" message.
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return Response.json({ error: "offline" }, { status: 503 });
+  }
+
   const client = new Anthropic();
   const encoder = new TextEncoder();
 
-  // 4) Stream plain-text deltas straight to the browser.
+  // 5) Stream plain-text deltas straight to the browser.
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       try {
@@ -62,7 +84,6 @@ export async function POST(req: Request) {
           {
             model: MODEL,
             max_tokens: 1024,
-            // Static prefix → cached. Conversation stays volatile in `messages`.
             system: [
               {
                 type: "text",
@@ -72,7 +93,7 @@ export async function POST(req: Request) {
             ],
             messages: parsed.data.messages,
           },
-          { signal: req.signal }, // client disconnect aborts the upstream call
+          { signal: req.signal },
         );
 
         for await (const event of messageStream) {
@@ -82,7 +103,6 @@ export async function POST(req: Request) {
         }
         controller.close();
       } catch (err) {
-        // Client navigated away / aborted — not an error worth surfacing.
         if (req.signal.aborted) {
           try {
             controller.close();
@@ -103,7 +123,7 @@ export async function POST(req: Request) {
     headers: {
       "Content-Type": "text/plain; charset=utf-8",
       "Cache-Control": "no-store",
-      "X-Accel-Buffering": "no", // disable proxy buffering so tokens flush live
+      "X-Accel-Buffering": "no",
     },
   });
 }

@@ -111,6 +111,8 @@ npm run start      # serve the production build locally
 
 ## Notes
 
-- **Rate limiting** is in-memory (per serverless instance) — fine to deter casual abuse. For strict global limits, swap `lib/rate-limit.ts` for Upstash Redis behind the same interface.
+- **Security headers** (CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy) are set in `next.config.ts`. The CSP uses `'unsafe-inline'` for scripts/styles (Next bootstrap + inline styles); it can be tightened to nonces later.
+- **Rate limiting** (`lib/rate-limit.ts`) uses Upstash Redis for global limits + a daily AI-spend cap (`CHAT_DAILY_LIMIT`) when `UPSTASH_*` is set, and falls back to per-instance in-memory otherwise. Both API routes also enforce a same-origin guard.
+- **Bot protection**: the contact form uses Cloudflare Turnstile when the `*TURNSTILE*` keys are set (honeypot-only otherwise).
 - **`middleware.ts`** drives locale routing. Next 16 prints a notice suggesting the newer `proxy.ts` convention; next-intl currently documents `middleware.ts`, so it's kept as-is.
 - The default chat model is `claude-sonnet-4-6` for fast, low-cost replies on a public widget; switch via `ANTHROPIC_MODEL`.

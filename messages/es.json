@@ -3,7 +3,7 @@
   "meta": {
     "home": {
       "title": "Valora Group — IA que resuelve los problemas cotidianos de tu negocio",
-      "description": "Valora Group es una consultora de IA que encuentra dónde tu negocio pierde tiempo, dinero e impulso — y construye IA que se adapta a cómo trabajas de verdad. Conoce nuestro trabajo para Fernando Piero."
+      "description": "Valora Group es una empresa de consultoría en IA que sirve a negocios en todo el mundo. Encontramos tus puntos de fricción y envolvemos la IA a su alrededor hasta que se convierten en tu solución — automatización, sitios web y modernización del negocio."
     }
   },
   "common": {
@@ -25,8 +25,8 @@
   "hero": {
     "eyebrow": "IA que rinde cada día",
     "titleA": "Encontramos lo que frena tu negocio — ",
-    "titleB": "y se lo entregamos a la IA.",
-    "lead": "Valora Group es una consultora de IA que resuelve los problemas cotidianos de los negocios. Las actualizaciones manuales, el trabajo que se acumula fuera de horario, las herramientas que no se hablan entre sí — encontramos esos puntos de fricción y construimos IA que se adapta a cómo funciona tu negocio de verdad.",
+    "titleB": "y lo envolvemos en IA.",
+    "lead": "Valora Group es una consultora de IA que transforma la forma en que operan los negocios. Encontramos dónde pierdes tiempo, dinero e impulso, y envolvemos la IA alrededor del problema hasta que se convierte en tu solución — desde la automatización hasta sitios web modernos y la puesta al día de tus operaciones.",
     "primaryCta": "Encuentra tus puntos de fricción",
     "secondaryCta": "Conoce el caso Fernando Piero",
     "note": "Empezamos por entender el problema — no por vender un producto.",
@@ -105,37 +105,37 @@
   "services": {
     "eyebrow": "Qué construimos",
     "title": "IA, integrada en el trabajo.",
-    "lead": "Negocios distintos, fricciones distintas — pero un conjunto de herramientas consistente. Este es el tipo de trabajo que le entregamos a la IA.",
+    "lead": "Negocios distintos, fricciones distintas — pero un mismo enfoque: envolvemos la IA alrededor del problema. Este es el tipo de trabajo que hacemos.",
     "items": [
       {
         "icon": "Bot",
         "title": "Asistentes con la voz de tu marca",
-        "description": "Asistentes siempre activos que responden en el idioma de tus clientes, con la voz de tu marca, las 24 horas."
-      },
-      {
-        "icon": "TrendingUp",
-        "title": "Valoraciones y precios automáticos",
-        "description": "Sistemas que actualizan precios y valoraciones automáticamente a medida que se mueven los datos en vivo — sin ediciones manuales."
+        "description": "Asistentes siempre activos en el idioma de tus clientes y la voz de tu marca, las 24 horas — como el de esta página."
       },
       {
         "icon": "Workflow",
-        "title": "Automatización de flujos de trabajo",
-        "description": "Las tareas repetitivas, fuera de horario y entre bambalinas — resueltas sin que nadie tenga que acordarse."
+        "title": "Automatización",
+        "description": "El trabajo repetitivo, fuera de horario y entre bambalinas — envuelto en IA para que funcione sin que nadie tenga que acordarse."
       },
       {
-        "icon": "Network",
-        "title": "Operaciones unificadas",
-        "description": "Herramientas desconectadas reunidas en un único sistema inteligente que funciona como uno solo."
+        "icon": "MonitorSmartphone",
+        "title": "Sitios web y productos digitales",
+        "description": "Sitios web y herramientas modernos, rápidos y listos para IA — hechos para trabajar tan duro como tu equipo."
       },
       {
-        "icon": "FileSearch",
-        "title": "Inteligencia de documentos y datos",
-        "description": "IA que lee, ordena y extrae del papeleo y los datos que frenan a los equipos."
+        "icon": "Building2",
+        "title": "Modernización del negocio",
+        "description": "Operaciones anticuadas y desconectadas reunidas en un único sistema inteligente que funciona como uno solo."
+      },
+      {
+        "icon": "TrendingUp",
+        "title": "Precios y valoraciones automáticos",
+        "description": "Precios y valoraciones que se actualizan solos a medida que se mueven los datos en vivo — sin ediciones manuales."
       },
       {
         "icon": "Puzzle",
         "title": "Integraciones de IA a medida",
-        "description": "Sea cual sea el flujo de trabajo — si es repetitivo, manual o lento, encontramos la forma más inteligente de hacerlo."
+        "description": "Sea cual sea el flujo de trabajo — si es manual, repetitivo o lento, envolvemos la IA a su alrededor."
       }
     ]
   },

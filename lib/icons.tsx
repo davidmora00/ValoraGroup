@@ -16,6 +16,13 @@ import {
   Boxes,
   Gauge,
   Sparkles,
+  MonitorSmartphone,
+  Building2,
+  Globe,
+  Code,
+  Cpu,
+  Languages,
+  ShieldCheck,
   type LucideProps,
 } from "lucide-react";
 import type { ComponentType } from "react";
@@ -41,6 +48,13 @@ const MAP: Record<string, ComponentType<LucideProps>> = {
   Boxes,
   Gauge,
   Sparkles,
+  MonitorSmartphone,
+  Building2,
+  Globe,
+  Code,
+  Cpu,
+  Languages,
+  ShieldCheck,
 };
 
 export function Icon({
