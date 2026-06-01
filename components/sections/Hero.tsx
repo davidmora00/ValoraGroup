@@ -1,0 +1,70 @@
+import { useLocale, useTranslations } from "next-intl";
+import { ArrowRight, Globe as GlobeIcon } from "lucide-react";
+import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { buttonVariants } from "@/components/ui/Button";
+import { Globe } from "./Globe";
+
+export function Hero() {
+  const t = useTranslations("hero");
+  const locale = useLocale();
+
+  return (
+    <section id="top" className="relative isolate overflow-hidden">
+      {/* Backdrop: ambient glow + interactive globe bleeding off the right */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-1/3 top-[-12%] h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(216,178,122,0.12),transparent_70%)] blur-2xl" />
+        <div className="absolute inset-y-0 right-0 hidden translate-x-[14%] sm:block sm:w-[78%] lg:right-[-4%] lg:w-[62%]">
+          <Globe />
+        </div>
+        {/* Legibility scrim over the text column */}
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#0a0a0b_0%,#0a0a0b_26%,rgba(10,10,11,0.65)_48%,rgba(10,10,11,0)_72%)]" />
+        {/* Fade into the next section */}
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(to_top,#0a0a0b,transparent)]" />
+      </div>
+
+      <Container>
+        <div className="flex min-h-[88vh] max-w-xl flex-col justify-center py-32 sm:min-h-[92vh]">
+          <Reveal>
+            <Eyebrow>{t("eyebrow")}</Eyebrow>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h1 className="mt-6 text-balance font-display text-4xl leading-[1.04] tracking-tight sm:text-5xl md:text-6xl">
+              {t("titleA")}
+              <span className="text-gold-gradient">{t("titleB")}</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mt-6 max-w-lg text-pretty text-lg leading-relaxed text-muted">
+              {t("lead")}
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <a
+                href={`/${locale}#contact`}
+                className={buttonVariants({ variant: "primary", size: "lg" })}
+              >
+                {t("primaryCta")}
+                <ArrowRight className="size-4" />
+              </a>
+              <a
+                href={`/${locale}#work`}
+                className={buttonVariants({ variant: "secondary", size: "lg" })}
+              >
+                {t("secondaryCta")}
+              </a>
+            </div>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-10 flex items-center gap-2.5 text-sm text-faint">
+              <GlobeIcon className="size-4 text-gold" strokeWidth={1.5} />
+              {t("reach")}
+            </p>
+          </Reveal>
+        </div>
+      </Container>
+    </section>
+  );
+}

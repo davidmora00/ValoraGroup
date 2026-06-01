@@ -1,0 +1,320 @@
+{
+  "siteName": "Valora Group",
+  "meta": {
+    "home": {
+      "title": "Valora Group — IA que resuelve los problemas cotidianos de tu negocio",
+      "description": "Valora Group es una consultora de IA que encuentra dónde tu negocio pierde tiempo, dinero e impulso — y construye IA que se adapta a cómo trabajas de verdad. Conoce nuestro trabajo para Fernando Piero."
+    }
+  },
+  "common": {
+    "skipToContent": "Saltar al contenido",
+    "backHome": "Volver al inicio",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "localeName": { "en": "English", "es": "Español" },
+    "switchLanguage": "Cambiar idioma"
+  },
+  "nav": {
+    "approach": "Enfoque",
+    "services": "Qué construimos",
+    "work": "Caso",
+    "why": "Por qué Valora",
+    "contact": "Contacto",
+    "cta": "Agenda una llamada"
+  },
+  "hero": {
+    "eyebrow": "IA que rinde cada día",
+    "titleA": "Encontramos lo que frena tu negocio — ",
+    "titleB": "y se lo entregamos a la IA.",
+    "lead": "Valora Group es una consultora de IA que resuelve los problemas cotidianos de los negocios. Las actualizaciones manuales, el trabajo que se acumula fuera de horario, las herramientas que no se hablan entre sí — encontramos esos puntos de fricción y construimos IA que se adapta a cómo funciona tu negocio de verdad.",
+    "primaryCta": "Encuentra tus puntos de fricción",
+    "secondaryCta": "Conoce el caso Fernando Piero",
+    "note": "Empezamos por entender el problema — no por vender un producto.",
+    "reach": "Soluciones de IA para tu negocio — en cualquier parte del mundo.",
+    "tags": [
+      "Actualizaciones manuales",
+      "Preguntas que distraen al equipo",
+      "Tareas acumuladas fuera de horario",
+      "Herramientas que no se hablan"
+    ]
+  },
+  "painPoints": {
+    "eyebrow": "El problema",
+    "title": "Todo negocio funciona sobre un conjunto de pequeñas frustraciones.",
+    "lead": "Por separado son tolerables. Juntas drenan en silencio el tiempo, el dinero y el impulso. Estas son las que más escuchamos.",
+    "items": [
+      {
+        "icon": "RefreshCw",
+        "title": "Actualizaciones manuales sin fin",
+        "description": "Precios, inventario, contenido, registros — sincronizados a mano, todos los días, para siempre."
+      },
+      {
+        "icon": "MessagesSquare",
+        "title": "Preguntas que distraen del trabajo real",
+        "description": "Personal interrumpido para responder lo mismo, en todos los idiomas, a toda hora."
+      },
+      {
+        "icon": "MoonStar",
+        "title": "Tareas que se acumulan fuera de horario",
+        "description": "Trabajo que solo ocurre cuando alguien se acuerda — o cuando ya es tarde."
+      },
+      {
+        "icon": "Unplug",
+        "title": "Herramientas que no se hablan entre sí",
+        "description": "Un montón de apps que guardan cada una un pedazo de la verdad y ninguna el total."
+      },
+      {
+        "icon": "Timer",
+        "title": "Respuestas que llegan demasiado tarde",
+        "description": "Clientes y equipos esperando información que un sistema podría mostrar al instante."
+      },
+      {
+        "icon": "Repeat2",
+        "title": "Trabajo repetitivo que nadie debería cargar",
+        "description": "Si es manual, repetitivo o lento, es candidato para la IA."
+      }
+    ]
+  },
+  "approach": {
+    "eyebrow": "Cómo trabajamos",
+    "title": "Empezamos por el problema, no por el producto.",
+    "lead": "La IA es la herramienta. Tu punto de fricción es el foco. Construimos la solución dentro de los lugares donde el trabajo realmente ocurre — tu sitio web, tus flujos de trabajo — para que la tecnología rinda cada día en lugar de quedarse en un estante.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Entender",
+        "description": "Nos sentamos con tu negocio y mapeamos dónde pierde tiempo, dinero e impulso — antes de escribir una línea de código."
+      },
+      {
+        "number": "02",
+        "title": "Diseñar el encaje",
+        "description": "Damos forma a una solución de IA alrededor de cómo funciona tu negocio — no de un producto genérico al que debas adaptarte."
+      },
+      {
+        "number": "03",
+        "title": "Integrar",
+        "description": "Incorporamos la solución directamente en tu sitio web y tus flujos — los lugares donde ocurre el trabajo."
+      },
+      {
+        "number": "04",
+        "title": "Hacer que rinda",
+        "description": "Nos aseguramos de que valga la pena cada día, y la refinamos a medida que tu negocio crece."
+      }
+    ]
+  },
+  "services": {
+    "eyebrow": "Qué construimos",
+    "title": "IA, integrada en el trabajo.",
+    "lead": "Negocios distintos, fricciones distintas — pero un conjunto de herramientas consistente. Este es el tipo de trabajo que le entregamos a la IA.",
+    "items": [
+      {
+        "icon": "Bot",
+        "title": "Asistentes con la voz de tu marca",
+        "description": "Asistentes siempre activos que responden en el idioma de tus clientes, con la voz de tu marca, las 24 horas."
+      },
+      {
+        "icon": "TrendingUp",
+        "title": "Valoraciones y precios automáticos",
+        "description": "Sistemas que actualizan precios y valoraciones automáticamente a medida que se mueven los datos en vivo — sin ediciones manuales."
+      },
+      {
+        "icon": "Workflow",
+        "title": "Automatización de flujos de trabajo",
+        "description": "Las tareas repetitivas, fuera de horario y entre bambalinas — resueltas sin que nadie tenga que acordarse."
+      },
+      {
+        "icon": "Network",
+        "title": "Operaciones unificadas",
+        "description": "Herramientas desconectadas reunidas en un único sistema inteligente que funciona como uno solo."
+      },
+      {
+        "icon": "FileSearch",
+        "title": "Inteligencia de documentos y datos",
+        "description": "IA que lee, ordena y extrae del papeleo y los datos que frenan a los equipos."
+      },
+      {
+        "icon": "Puzzle",
+        "title": "Integraciones de IA a medida",
+        "description": "Sea cual sea el flujo de trabajo — si es repetitivo, manual o lento, encontramos la forma más inteligente de hacerlo."
+      }
+    ]
+  },
+  "caseStudy": {
+    "eyebrow": "La prueba",
+    "client": "Fernando Piero",
+    "clientMeta": "Joyería fina colombiana",
+    "title": "Cuando los precios siguen un mercado en vivo, el trabajo no puede ser manual.",
+    "lead": "Fernando Piero es una casa de joyería fina colombiana. El reto no era “necesitamos IA” — era un conjunto de fricciones muy concretas. Esto fue lo que resolvimos.",
+    "solutions": [
+      {
+        "title": "Precios que siguen al mercado",
+        "problem": "Las valoraciones debían seguir un mercado de materias primas en vivo — y se editaban a mano.",
+        "solution": "Construimos un sistema que actualiza las valoraciones automáticamente a medida que se mueve el mercado, eliminando las ediciones manuales constantes."
+      },
+      {
+        "title": "Respuestas en cualquier idioma, a cualquier hora",
+        "problem": "Los clientes necesitaban respuestas en su propio idioma, a toda hora.",
+        "solution": "Integramos un asistente con la voz de la marca que lo resuelve 24/7 — en el idioma del cliente y el tono de la casa."
+      },
+      {
+        "title": "Operaciones que funcionan como una",
+        "problem": "Operaciones desconectadas necesitaban trabajar juntas.",
+        "solution": "Las unificamos en un único sistema inteligente."
+      }
+    ],
+    "stats": [
+      { "value": "24/7", "label": "respuestas multilingües a clientes" },
+      { "value": "0", "label": "ediciones de precio manuales" },
+      { "value": "1", "label": "sistema unificado" }
+    ],
+    "outcome": "Negocio distinto, fricciones distintas — pero el mismo enfoque que llevamos a cada cliente: entender primero, y luego construir la solución dentro del trabajo.",
+    "cta": "Lee la historia completa"
+  },
+  "whyValora": {
+    "eyebrow": "Por qué Valora",
+    "title": "Tecnología que rinde cada día.",
+    "lead": "No estamos aquí para venderte un producto. Estamos aquí para eliminar la fricción.",
+    "points": [
+      {
+        "icon": "Target",
+        "title": "Primero el problema, siempre",
+        "description": "Empezamos por entender el punto de fricción — no por echar mano de una herramienta que ya queríamos vender."
+      },
+      {
+        "icon": "Layers",
+        "title": "Integrada en tu negocio",
+        "description": "Las soluciones viven dentro de tu sitio web y tus flujos, donde ocurre el trabajo — no en un estante."
+      },
+      {
+        "icon": "Boxes",
+        "title": "Sin importar la industria",
+        "description": "Joyería, servicios, comercio — sea cual sea la industria, el trabajo lento y repetitivo tiene una versión más inteligente."
+      },
+      {
+        "icon": "Gauge",
+        "title": "Medida por el impacto",
+        "description": "Si no ahorra tiempo, dinero o impulso, no está terminada."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Preguntas",
+    "title": "Lo que nos preguntan antes de empezar.",
+    "items": [
+      {
+        "q": "¿Necesito saber qué IA quiero?",
+        "a": "No. La mayoría de los clientes llegan con una frustración, no con una especificación. Empezamos por entender el problema y recomendamos la IA solo cuando sabemos qué te está frenando de verdad."
+      },
+      {
+        "q": "¿Con qué tipo de negocios trabajan?",
+        "a": "Trabajamos sin importar la industria. Si tu negocio tiene trabajo repetitivo, manual o lento, casi siempre hay una forma más inteligente de hacerlo — y para eso estamos."
+      },
+      {
+        "q": "¿Dónde vive la IA?",
+        "a": "Dentro de tu negocio — tu sitio web, tus flujos, los lugares donde ocurre el trabajo. La integramos para que rinda cada día, en lugar de quedarse en un estante."
+      },
+      {
+        "q": "¿Cómo empezamos?",
+        "a": "Con una breve conversación de descubrimiento. Mapeamos dónde pierdes tiempo, dinero e impulso, y volvemos con un plan enfocado y el punto de mayor impacto para empezar."
+      },
+      {
+        "q": "¿El asistente puede funcionar en más de un idioma?",
+        "a": "Sí. El asistente con la voz de la marca en este mismo sitio es un ejemplo — responde en inglés y español, con nuestra voz, a cualquier hora."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Empieza aquí",
+    "title": "Cuéntanos dónde tu negocio pierde tiempo.",
+    "lead": "Describe la fricción — la tarea manual, la respuesta lenta, la herramienta que no coopera. Volveremos con dónde puede ayudar la IA y por dónde empezar.",
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "Tu nombre",
+      "email": "Correo",
+      "emailPlaceholder": "tu@empresa.com",
+      "company": "Empresa",
+      "companyPlaceholder": "Nombre de la empresa",
+      "message": "¿Qué te está frenando?",
+      "messagePlaceholder": "Cuéntanos sobre el trabajo manual, repetitivo o lento que te gustaría resolver…",
+      "submit": "Enviar",
+      "sending": "Enviando…",
+      "successTitle": "Listo — gracias.",
+      "success": "Te contactaremos muy pronto para entrar en detalle.",
+      "errorTitle": "Algo salió mal.",
+      "error": "Inténtalo de nuevo, o escríbenos directamente.",
+      "validation": {
+        "name": "Ingresa tu nombre.",
+        "email": "Ingresa un correo válido.",
+        "message": "Cuéntanos un poco sobre el reto."
+      }
+    },
+    "info": {
+      "emailLabel": "Escríbenos",
+      "email": "hello@valoragroup.ai",
+      "responseTime": "Normalmente respondemos en un día hábil."
+    }
+  },
+  "footer": {
+    "tagline": "IA que resuelve los problemas cotidianos de los negocios.",
+    "explore": "Explora",
+    "company": "Compañía",
+    "madeWith": "Este sitio funciona con el mismo tipo de IA que construimos para clientes — pregúntale al asistente.",
+    "rights": "Todos los derechos reservados.",
+    "backToTop": "Volver arriba"
+  },
+  "chat": {
+    "launcher": "Pregúntale a Valora",
+    "title": "Asistente de Valora",
+    "subtitle": "Con la voz de la marca · EN / ES · 24/7",
+    "greeting": "Hola — soy el asistente de Valora, y soy un ejemplo de lo que construimos. Pregúntame cómo resolvemos los problemas de los negocios, sobre el proyecto Fernando Piero, o cómo empezar.",
+    "placeholder": "Pregunta sobre lo que hacemos…",
+    "send": "Enviar",
+    "disclaimer": "Asistente de IA — las respuestas pueden no ser perfectas. Para detalles, inicia una conversación con el equipo.",
+    "suggestions": [
+      "¿Qué hace exactamente Valora?",
+      "Cuéntame sobre el proyecto Fernando Piero",
+      "¿Cómo empezamos?",
+      "¿Cuánto cuesta?"
+    ],
+    "error": "Tuve un problema. Inténtalo de nuevo en un momento.",
+    "reset": "Nueva conversación",
+    "typing": "Pensando…",
+    "offline": "El asistente aún no está configurado. Agrega una clave de API para activarlo."
+  },
+  "caseStudyPage": {
+    "meta": {
+      "title": "Caso Fernando Piero — Valora Group",
+      "description": "Cómo Valora Group resolvió las fricciones de Fernando Piero: valoraciones automáticas atadas a un mercado en vivo, un asistente multilingüe con la voz de la marca y operaciones unificadas."
+    },
+    "eyebrow": "Caso de cliente",
+    "client": "Fernando Piero",
+    "clientMeta": "Joyería fina colombiana · Trabajo de cliente",
+    "title": "Una casa de joyería cuyos precios siguen un mercado en vivo.",
+    "lead": "Fernando Piero no vino pidiendo “IA”. Vino con tres fricciones concretas que costaban tiempo y precisión todos los días. Esto fue lo que construimos.",
+    "challengeHeading": "El reto",
+    "challengeBody": [
+      "Fernando Piero vende joyería fina, donde el valor de una pieza está atado a los mercados de materias primas en vivo. Eso creaba un impuesto silencioso y constante sobre el negocio: los precios debían revisarse y reingresarse a mano a medida que se movía el mercado, y cualquier demora significaba vender al número equivocado.",
+      "Además, llegaban clientes de distintos países y zonas horarias esperando respuestas en su propio idioma — y los sistemas que hacían funcionar el negocio guardaban cada uno una parte distinta del panorama."
+    ],
+    "solutionsHeading": "Lo que construimos",
+    "solutions": [
+      {
+        "title": "Valoraciones que se actualizan solas",
+        "body": "Construimos un sistema que sigue el mercado de materias primas en vivo y actualiza las valoraciones automáticamente a medida que se mueve. El reprecio manual — y el riesgo que traía consigo — simplemente desapareció."
+      },
+      {
+        "title": "Un asistente con la voz de la marca, en cualquier idioma, 24/7",
+        "body": "Integramos un asistente fundamentado en la voz y el catálogo de la casa. Responde las preguntas de los clientes a toda hora, en su propio idioma, como lo haría la marca."
+      },
+      {
+        "title": "Un solo sistema inteligente",
+        "body": "Unificamos las operaciones desconectadas en un único sistema, de modo que las piezas que antes trabajaban aisladas ahora funcionan como una."
+      }
+    ],
+    "resultsHeading": "El resultado",
+    "approachNote": "No empezamos con un producto. Empezamos con tres fricciones — y le entregamos cada una a una IA construida a la medida de la casa.",
+    "closingTitle": "Negocio distinto, mismo enfoque.",
+    "closingBody": "Sea cual sea tu industria, si tu negocio funciona con trabajo repetitivo, manual o lento, casi siempre hay una forma más inteligente de hacerlo. Para eso estamos.",
+    "cta": "Cuéntanos dónde pierdes tiempo"
+  }
+}

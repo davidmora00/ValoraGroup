@@ -1,0 +1,320 @@
+{
+  "siteName": "Valora Group",
+  "meta": {
+    "home": {
+      "title": "Valora Group — AI that solves your everyday business pain points",
+      "description": "Valora Group is an AI consultancy that finds where your business loses time, money, and momentum — then builds AI that fits how you actually work. See our work for Fernando Piero."
+    }
+  },
+  "common": {
+    "skipToContent": "Skip to content",
+    "backHome": "Back to home",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "localeName": { "en": "English", "es": "Español" },
+    "switchLanguage": "Switch language"
+  },
+  "nav": {
+    "approach": "Approach",
+    "services": "What we build",
+    "work": "Case study",
+    "why": "Why Valora",
+    "contact": "Contact",
+    "cta": "Book a discovery call"
+  },
+  "hero": {
+    "eyebrow": "AI that earns its keep",
+    "titleA": "We find what slows your business down — ",
+    "titleB": "and hand it to AI.",
+    "lead": "Valora Group is an AI consultancy that solves everyday business pain points. The manual updates, the after-hours pileups, the tools that don’t talk to each other — we find those friction points and build AI that fits how your business actually works.",
+    "primaryCta": "Find your pain points",
+    "secondaryCta": "See the Fernando Piero story",
+    "note": "We start by understanding the problem — not by selling a product.",
+    "reach": "AI solutions for your business — delivered across the globe.",
+    "tags": [
+      "Manual updates",
+      "Questions that pull staff away",
+      "After-hours pileups",
+      "Tools that don’t talk to each other"
+    ]
+  },
+  "painPoints": {
+    "eyebrow": "The problem",
+    "title": "Every business runs on a set of small frustrations.",
+    "lead": "On their own they’re tolerable. Together they quietly drain time, money, and momentum. These are the ones we hear about most.",
+    "items": [
+      {
+        "icon": "RefreshCw",
+        "title": "Manual updates that never end",
+        "description": "Prices, inventory, content, records — kept in sync by hand, every day, forever."
+      },
+      {
+        "icon": "MessagesSquare",
+        "title": "Questions that pull people off real work",
+        "description": "Staff interrupted to answer the same things, in every language, at every hour."
+      },
+      {
+        "icon": "MoonStar",
+        "title": "Tasks that pile up after hours",
+        "description": "Work that only happens when someone remembers — or once it’s already late."
+      },
+      {
+        "icon": "Unplug",
+        "title": "Tools that don’t talk to each other",
+        "description": "A stack of apps that each hold a piece of the truth and none of the whole."
+      },
+      {
+        "icon": "Timer",
+        "title": "Answers that arrive too slowly",
+        "description": "Customers and teams waiting on information a system could surface instantly."
+      },
+      {
+        "icon": "Repeat2",
+        "title": "Repetitive work no one should own",
+        "description": "If it’s manual, repetitive, or slow, it’s a candidate for AI."
+      }
+    ]
+  },
+  "approach": {
+    "eyebrow": "How we work",
+    "title": "We start with the problem, not the product.",
+    "lead": "AI is the tool. Your pain point is the focus. We build the solution into the places where the work actually happens — your website, your workflows — so the technology earns its keep every day instead of sitting on a shelf.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Understand",
+        "description": "We sit with your business and map where it loses time, money, and momentum — before a line of code is written."
+      },
+      {
+        "number": "02",
+        "title": "Design the fit",
+        "description": "We shape an AI solution around how your business actually works — not a generic product you have to bend yourself around."
+      },
+      {
+        "number": "03",
+        "title": "Build it in",
+        "description": "We embed the solution directly into your website and workflows — the places where the work happens."
+      },
+      {
+        "number": "04",
+        "title": "Earn its keep",
+        "description": "We make sure it pays off every day, then refine it as your business grows."
+      }
+    ]
+  },
+  "services": {
+    "eyebrow": "What we build",
+    "title": "AI, built into the work.",
+    "lead": "Different businesses, different pain points — but a consistent toolkit. Here’s the kind of work we hand to AI.",
+    "items": [
+      {
+        "icon": "Bot",
+        "title": "Brand-aware assistants",
+        "description": "Always-on assistants that answer in your customers’ language, in your brand’s voice, around the clock."
+      },
+      {
+        "icon": "TrendingUp",
+        "title": "Automated valuations & pricing",
+        "description": "Systems that update prices and valuations automatically as live data moves — no manual edits."
+      },
+      {
+        "icon": "Workflow",
+        "title": "Workflow automation",
+        "description": "The repetitive, after-hours, behind-the-scenes tasks — handled without anyone having to remember."
+      },
+      {
+        "icon": "Network",
+        "title": "Unified operations",
+        "description": "Disconnected tools pulled into a single intelligent system that runs as one."
+      },
+      {
+        "icon": "FileSearch",
+        "title": "Document & data intelligence",
+        "description": "AI that reads, sorts, and extracts from the paperwork and data that slows teams down."
+      },
+      {
+        "icon": "Puzzle",
+        "title": "Custom AI integrations",
+        "description": "Whatever the workflow — if it’s repetitive, manual, or slow, we find the smarter way to run it."
+      }
+    ]
+  },
+  "caseStudy": {
+    "eyebrow": "Proof",
+    "client": "Fernando Piero",
+    "clientMeta": "Colombian fine-jewelry house",
+    "title": "When prices track a live market, the work can’t be manual.",
+    "lead": "Fernando Piero is a Colombian fine-jewelry house. The challenge wasn’t “we need AI” — it was a set of very specific frictions. Here’s what we solved.",
+    "solutions": [
+      {
+        "title": "Prices that follow the market",
+        "problem": "Valuations had to track a live commodity market — and were being edited by hand.",
+        "solution": "We built a system that updates valuations automatically as the market moves, eliminating constant manual edits."
+      },
+      {
+        "title": "Answers in any language, any hour",
+        "problem": "Customers needed answers in their own language, around the clock.",
+        "solution": "We embedded a brand-aware assistant that handles it 24/7 — in the customer’s language and the house’s voice."
+      },
+      {
+        "title": "Operations that run as one",
+        "problem": "Disconnected operations needed to work together.",
+        "solution": "We unified them into a single intelligent system."
+      }
+    ],
+    "stats": [
+      { "value": "24/7", "label": "multilingual customer answers" },
+      { "value": "0", "label": "manual price edits" },
+      { "value": "1", "label": "unified system" }
+    ],
+    "outcome": "Different business, different pain points — but the same approach we bring to every client: understand first, then build the solution into the work.",
+    "cta": "Read the full story"
+  },
+  "whyValora": {
+    "eyebrow": "Why Valora",
+    "title": "Technology that earns its keep.",
+    "lead": "We’re not here to sell you a product. We’re here to remove friction.",
+    "points": [
+      {
+        "icon": "Target",
+        "title": "Problem-first, always",
+        "description": "We start by understanding the pain point — not by reaching for a tool we already wanted to sell."
+      },
+      {
+        "icon": "Layers",
+        "title": "Built into your business",
+        "description": "Solutions live inside your website and workflows, where the work actually happens — not on a shelf."
+      },
+      {
+        "icon": "Boxes",
+        "title": "Industry-agnostic",
+        "description": "Jewelry, services, commerce — whatever the industry, repetitive and slow work has a smarter version."
+      },
+      {
+        "icon": "Gauge",
+        "title": "Measured by impact",
+        "description": "If it doesn’t save time, money, or momentum, it isn’t done."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Questions",
+    "title": "What people ask before we start.",
+    "items": [
+      {
+        "q": "Do I need to know what AI I want?",
+        "a": "No. Most clients come to us with a frustration, not a spec. We start by understanding the problem and recommend the AI only once we know what’s actually slowing you down."
+      },
+      {
+        "q": "What kind of businesses do you work with?",
+        "a": "We’re industry-agnostic. If your business has work that’s repetitive, manual, or slow, there’s almost always a smarter way to run it — and that’s the work we’re here for."
+      },
+      {
+        "q": "Where does the AI actually live?",
+        "a": "Inside your business — your website, your workflows, the places where the work happens. We build it in so it earns its keep daily, instead of sitting on a shelf."
+      },
+      {
+        "q": "How do we get started?",
+        "a": "A short discovery conversation. We map where you lose time, money, and momentum, then come back with a focused plan and the highest-impact place to start."
+      },
+      {
+        "q": "Can the assistant work in more than one language?",
+        "a": "Yes. The brand-aware assistant on this very site is an example — it answers in English and Spanish, in our voice, at any hour."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Start here",
+    "title": "Tell us where your business loses time.",
+    "lead": "Describe the friction — the manual task, the slow answer, the tool that won’t cooperate. We’ll come back with where AI can help and where to start.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you@company.com",
+      "company": "Company",
+      "companyPlaceholder": "Company name",
+      "message": "What’s slowing you down?",
+      "messagePlaceholder": "Tell us about the manual, repetitive, or slow work you’d like to fix…",
+      "submit": "Send it over",
+      "sending": "Sending…",
+      "successTitle": "Got it — thank you.",
+      "success": "We’ll be in touch shortly to dig into the details.",
+      "errorTitle": "Something went wrong.",
+      "error": "Please try again, or email us directly.",
+      "validation": {
+        "name": "Please enter your name.",
+        "email": "Please enter a valid email.",
+        "message": "Tell us a little about the challenge."
+      }
+    },
+    "info": {
+      "emailLabel": "Email us",
+      "email": "hello@valoragroup.ai",
+      "responseTime": "We typically reply within one business day."
+    }
+  },
+  "footer": {
+    "tagline": "AI that solves everyday business pain points.",
+    "explore": "Explore",
+    "company": "Company",
+    "madeWith": "This site runs on the same kind of AI we build for clients — ask the assistant.",
+    "rights": "All rights reserved.",
+    "backToTop": "Back to top"
+  },
+  "chat": {
+    "launcher": "Ask Valora",
+    "title": "Valora Assistant",
+    "subtitle": "Brand-aware · EN / ES · 24/7",
+    "greeting": "Hi — I’m Valora’s assistant, and I’m an example of what we build. Ask me how we solve business pain points, about the Fernando Piero project, or how to get started.",
+    "placeholder": "Ask about what we do…",
+    "send": "Send",
+    "disclaimer": "AI assistant — answers may not be perfect. For specifics, start a conversation with the team.",
+    "suggestions": [
+      "What exactly does Valora do?",
+      "Tell me about the Fernando Piero project",
+      "How do we get started?",
+      "What does it cost?"
+    ],
+    "error": "I hit a snag. Please try again in a moment.",
+    "reset": "New chat",
+    "typing": "Thinking…",
+    "offline": "The assistant isn’t configured yet. Add an API key to bring it online."
+  },
+  "caseStudyPage": {
+    "meta": {
+      "title": "Fernando Piero case study — Valora Group",
+      "description": "How Valora Group solved Fernando Piero’s frictions: automatic valuations tied to a live market, a brand-aware multilingual assistant, and unified operations."
+    },
+    "eyebrow": "Case study",
+    "client": "Fernando Piero",
+    "clientMeta": "Colombian fine-jewelry house · Client work",
+    "title": "A jewelry house whose prices follow a live market.",
+    "lead": "Fernando Piero didn’t come asking for “AI.” They came with three concrete frictions that cost time and accuracy every day. Here’s what we built.",
+    "challengeHeading": "The challenge",
+    "challengeBody": [
+      "Fernando Piero sells fine jewelry, where the value of a piece is tied to live commodity markets. That created a quiet, constant tax on the business: prices had to be re-checked and re-entered by hand as the market moved, and any lag meant selling at the wrong number.",
+      "On top of that, customers arrived from different countries and time zones expecting answers in their own language — and the systems running the business each held a separate piece of the picture."
+    ],
+    "solutionsHeading": "What we built",
+    "solutions": [
+      {
+        "title": "Valuations that update themselves",
+        "body": "We built a system that tracks the live commodity market and updates valuations automatically as it moves. The manual re-pricing — and the risk that came with it — simply went away."
+      },
+      {
+        "title": "A brand-aware assistant, in any language, 24/7",
+        "body": "We embedded an assistant grounded in the house’s voice and catalog. It answers customer questions around the clock, in the customer’s own language, the way the brand would."
+      },
+      {
+        "title": "One intelligent system",
+        "body": "We unified the disconnected operations into a single system, so pieces that used to work in isolation now run as one."
+      }
+    ],
+    "resultsHeading": "The result",
+    "approachNote": "We didn’t start with a product. We started with three frictions — and handed each one to AI built to fit the house.",
+    "closingTitle": "Different business, same approach.",
+    "closingBody": "Whatever your industry, if your business runs on work that’s repetitive, manual, or slow, there’s almost always a smarter way to run it. That’s the work we’re here for.",
+    "cta": "Tell us where you lose time"
+  }
+}
