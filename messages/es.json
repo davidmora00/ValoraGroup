@@ -3,6 +3,23 @@
   "marquee": {
     "items": ["Automatización", "Sitios web", "Modernización", "Asistentes de IA", "Precios y valoraciones", "Integraciones"]
   },
+  "proof": {
+    "eyebrow": "Pruebas, no promesas",
+    "title": "Mira lo que construimos — funcionando.",
+    "impactLabel": "Horas ahorradas · este mes",
+    "impactCaption": "Tiempo recuperado, cada semana.",
+    "automationCaption": "Trabajo que se ejecuta solo.",
+    "automationTasks": ["Sincronizar inventario", "Actualizar precios", "Responder consultas", "Conciliar pedidos"],
+    "assistantCaption": "Respuestas en cualquier idioma, 24/7.",
+    "competitorLabel": "Análisis de competencia",
+    "competitorCaption": "Estudiamos a tus rivales y te decimos cómo ganar.",
+    "competitorInsights": [
+      { "tag": "Logística", "text": "Tus rivales envían 2 días más rápido — así los igualas." },
+      { "tag": "Redes", "text": "Publican 3× más los martes y jueves — ajusta tu horario." },
+      { "tag": "Precios", "text": "Estás 8% por encima en paquetes — prueba un nuevo nivel." },
+      { "tag": "Contenido", "text": "Su página top posiciona en términos que te faltan." }
+    ]
+  },
   "meta": {
     "home": {
       "title": "Valora Group — IA que resuelve los problemas cotidianos de tu negocio",
@@ -29,7 +46,7 @@
     "eyebrow": "IA que rinde cada día",
     "titleA": "Encontramos lo que frena tu negocio — ",
     "titleB": "y lo envolvemos en IA.",
-    "lead": "Valora Group es una consultora de IA que transforma la forma en que operan los negocios. Encontramos dónde pierdes tiempo, dinero e impulso, y envolvemos la IA alrededor del problema hasta que se convierte en tu solución — desde la automatización hasta sitios web modernos y la puesta al día de tus operaciones.",
+    "lead": "Automatización, sitios web y modernización del negocio — para empresas de todo el mundo.",
     "primaryCta": "Encuentra tus puntos de fricción",
     "secondaryCta": "Conoce el caso Fernando Piero",
     "note": "Empezamos por entender el problema — no por vender un producto.",
@@ -38,7 +55,7 @@
   "painPoints": {
     "eyebrow": "El problema",
     "title": "Todo negocio funciona sobre un conjunto de pequeñas frustraciones.",
-    "lead": "Por separado son tolerables. Juntas drenan en silencio el tiempo, el dinero y el impulso. Estas son las que más escuchamos.",
+    "lead": "Por separado, tolerables. Juntas drenan en silencio tiempo, dinero e impulso.",
     "items": [
       {
         "icon": "RefreshCw",
@@ -75,7 +92,7 @@
   "approach": {
     "eyebrow": "Cómo trabajamos",
     "title": "Empezamos por el problema, no por el producto.",
-    "lead": "La IA es la herramienta. Tu punto de fricción es el foco. Construimos la solución dentro de los lugares donde el trabajo realmente ocurre — tu sitio web, tus flujos de trabajo — para que la tecnología rinda cada día en lugar de quedarse en un estante.",
+    "lead": "Primero el problema. Integrada donde ocurre el trabajo. Rindiendo cada día.",
     "steps": [
       {
         "number": "01",
@@ -102,7 +119,7 @@
   "services": {
     "eyebrow": "Qué construimos",
     "title": "IA, integrada en el trabajo.",
-    "lead": "Negocios distintos, fricciones distintas — pero un mismo enfoque: envolvemos la IA alrededor del problema. Este es el tipo de trabajo que hacemos.",
+    "lead": "Un enfoque, envuelto alrededor de tu problema.",
     "items": [
       {
         "icon": "Bot",

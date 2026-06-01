@@ -17,11 +17,13 @@ export function Hero() {
       {/* Backdrop: ambient glow + interactive globe bleeding off the right */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/3 top-[-12%] h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(216,178,122,0.12),transparent_70%)] blur-2xl" />
-        <div className="absolute inset-y-0 right-0 hidden translate-x-[14%] sm:block sm:w-[78%] lg:right-[-4%] lg:w-[62%]">
+        <div className="absolute inset-y-0 right-[-25%] w-[150%] sm:right-0 sm:w-[78%] sm:translate-x-[14%] lg:right-[-4%] lg:w-[62%]">
           <Globe />
         </div>
-        {/* Legibility scrim over the text column */}
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#0a0a0b_0%,#0a0a0b_26%,rgba(10,10,11,0.65)_48%,rgba(10,10,11,0)_72%)]" />
+        {/* Mobile scrim — keeps text legible over the backdrop globe */}
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,11,0.92),rgba(10,10,11,0.72)_55%,rgba(10,10,11,0.5))] sm:hidden" />
+        {/* Desktop scrim — left → right */}
+        <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,#0a0a0b_0%,#0a0a0b_26%,rgba(10,10,11,0.65)_48%,rgba(10,10,11,0)_72%)] sm:block" />
         {/* Fade into the next section */}
         <div className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(to_top,#0a0a0b,transparent)]" />
       </div>

@@ -3,6 +3,23 @@
   "marquee": {
     "items": ["Automation", "Websites", "Modernization", "AI assistants", "Pricing & valuations", "Integrations"]
   },
+  "proof": {
+    "eyebrow": "Proof, not promises",
+    "title": "See what we build — working.",
+    "impactLabel": "Hours saved · this month",
+    "impactCaption": "Measurable time back, every week.",
+    "automationCaption": "Work that runs itself.",
+    "automationTasks": ["Sync inventory", "Update prices", "Reply to inquiries", "Reconcile orders"],
+    "assistantCaption": "Answers in any language, 24/7.",
+    "competitorLabel": "Competitor analysis",
+    "competitorCaption": "We study your rivals and tell you how to win.",
+    "competitorInsights": [
+      { "tag": "Logistics", "text": "Rivals ship 2 days faster — here’s how to match it." },
+      { "tag": "Social", "text": "They post 3× more on Tue & Thu — shift your schedule." },
+      { "tag": "Pricing", "text": "You’re 8% high on bundles — test a new tier." },
+      { "tag": "Content", "text": "Their top page ranks for terms you’re missing." }
+    ]
+  },
   "meta": {
     "home": {
       "title": "Valora Group — AI that solves your everyday business pain points",
@@ -29,7 +46,7 @@
     "eyebrow": "AI that earns its keep",
     "titleA": "We find what slows your business down — ",
     "titleB": "and wrap AI around it.",
-    "lead": "Valora Group is an AI consultancy that transforms how businesses run. We find where you lose time, money, and momentum, then wrap AI around the problem until it becomes your solution — from automation to modern websites to bringing your operations up to date.",
+    "lead": "Automation, websites, and business modernization — for companies around the world.",
     "primaryCta": "Find your pain points",
     "secondaryCta": "See the Fernando Piero story",
     "note": "We start by understanding the problem — not by selling a product.",
@@ -38,7 +55,7 @@
   "painPoints": {
     "eyebrow": "The problem",
     "title": "Every business runs on a set of small frustrations.",
-    "lead": "On their own they’re tolerable. Together they quietly drain time, money, and momentum. These are the ones we hear about most.",
+    "lead": "Individually tolerable. Together they quietly drain time, money, and momentum.",
     "items": [
       {
         "icon": "RefreshCw",
@@ -75,7 +92,7 @@
   "approach": {
     "eyebrow": "How we work",
     "title": "We start with the problem, not the product.",
-    "lead": "AI is the tool. Your pain point is the focus. We build the solution into the places where the work actually happens — your website, your workflows — so the technology earns its keep every day instead of sitting on a shelf.",
+    "lead": "Problem first. Built into where the work happens. Earning its keep every day.",
     "steps": [
       {
         "number": "01",
@@ -102,7 +119,7 @@
   "services": {
     "eyebrow": "What we build",
     "title": "AI, built into the work.",
-    "lead": "Different businesses, different pain points — but one approach: we wrap AI around the problem. Here’s the kind of work we take on.",
+    "lead": "One approach, wrapped around your problem.",
     "items": [
       {
         "icon": "Bot",
