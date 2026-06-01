@@ -56,6 +56,8 @@
     "eyebrow": "The problem",
     "title": "Every business runs on a set of small frustrations.",
     "lead": "Individually tolerable. Together they quietly drain time, money, and momentum.",
+    "prompt": "Recognize any of these?",
+    "tapHint": "Tap any frustration to watch it play out.",
     "items": [
       {
         "icon": "RefreshCw",

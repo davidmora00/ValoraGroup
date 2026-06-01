@@ -56,6 +56,8 @@
     "eyebrow": "El problema",
     "title": "Todo negocio funciona sobre un conjunto de pequeñas frustraciones.",
     "lead": "Por separado, tolerables. Juntas drenan en silencio tiempo, dinero e impulso.",
+    "prompt": "¿Reconoces alguna de estas?",
+    "tapHint": "Toca cualquier frustración para verla en acción.",
     "items": [
       {
         "icon": "RefreshCw",
