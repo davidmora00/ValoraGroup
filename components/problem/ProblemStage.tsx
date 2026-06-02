@@ -7,7 +7,7 @@ import {
   useInView,
   useReducedMotion,
 } from "framer-motion";
-import { MessageSquare, Moon, Database, Mail, Unplug, Copy } from "lucide-react";
+import { RefreshCw, MessageSquare, Target, Moon, Database, Mail, Copy } from "lucide-react";
 import { Icon } from "@/lib/icons";
 import { cn } from "@/lib/utils";
 
@@ -16,8 +16,8 @@ type Item = { icon: string; title: string; description: string };
 const DWELL = 5000; // ms each frustration holds the stage before auto-advancing
 
 /** Interactive "Problem" stage: pick a frustration (or let it auto-play) and
- *  watch it act out. Each scene is a single, deliberate metaphor on a seamless
- *  loop — and wordless, so it adds no translation load. */
+ *  watch it act out. Each scene is one luminous, deliberate metaphor on a
+ *  seamless loop — and wordless, so it adds no translation load. */
 export function ProblemStage({
   items,
   prompt,
@@ -68,7 +68,7 @@ export function ProblemStage({
                 className={cn(
                   "group relative flex shrink-0 items-center gap-3 overflow-hidden rounded-xl border px-4 py-3 text-left transition-colors duration-300",
                   on
-                    ? "border-gold/40 bg-gold/[0.06]"
+                    ? "border-gold/40 bg-gold/[0.06] shadow-[0_0_26px_-12px_rgba(216,178,122,0.85)]"
                     : "border-line/60 hover:border-line",
                 )}
               >
@@ -107,14 +107,15 @@ export function ProblemStage({
       {/* Stage — the selected frustration, playing out */}
       <div className="lg:col-span-7">
         <div className="surface-card relative flex min-h-[19rem] flex-col overflow-hidden rounded-2xl border border-line p-6 sm:min-h-[21rem] sm:p-8">
+          <StageAmbiance reduce={!!reduce} />
           <AnimatePresence mode="wait">
             <motion.div
               key={item.icon}
-              initial={reduce ? false : { opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={reduce ? undefined : { opacity: 0, y: -10 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="flex h-full grow flex-col"
+              initial={reduce ? false : { opacity: 0, y: 12, scale: 0.985 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={reduce ? undefined : { opacity: 0, y: -10, scale: 0.985 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="relative z-10 flex h-full grow flex-col"
             >
               <div aria-hidden className="grow">
                 <Scene iconName={item.icon} reduce={!!reduce} />
@@ -129,6 +130,32 @@ export function ProblemStage({
           </AnimatePresence>
         </div>
       </div>
+    </div>
+  );
+}
+
+/* --------------------------------------------------------------- ambiance */
+
+/** Living backdrop shared by every scene: a faint dot-grid, a breathing gold
+ *  glow, and a soft vignette — gives the flat stage real depth. */
+function StageAmbiance({ reduce }: { reduce: boolean }) {
+  const dotMask = "radial-gradient(ellipse at center, #000 35%, transparent 78%)";
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div
+        className="absolute inset-0 opacity-60 [background-image:radial-gradient(circle,_rgba(255,255,255,0.05)_1px,_transparent_1.5px)] [background-size:26px_26px]"
+        style={{ maskImage: dotMask, WebkitMaskImage: dotMask }}
+      />
+      <motion.div
+        className="absolute left-1/2 top-[38%] size-72 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+        style={{ background: "radial-gradient(circle, rgba(216,178,122,0.16), transparent 70%)" }}
+        animate={reduce ? undefined : { opacity: [0.5, 0.9, 0.5], scale: [0.92, 1.06, 0.92] }}
+        transition={reduce ? undefined : { duration: 8, ease: "easeInOut", repeat: Infinity }}
+      />
+      <div
+        className="absolute inset-0"
+        style={{ background: "radial-gradient(ellipse at center, transparent 52%, rgba(0,0,0,0.4))" }}
+      />
     </div>
   );
 }
@@ -156,133 +183,155 @@ function Scene({ iconName, reduce }: { iconName: string; reduce: boolean }) {
 
 function SceneFrame({ children }: { children: ReactNode }) {
   return (
-    <div className="flex h-full items-center justify-center">
+    <div className="flex h-full min-h-[12rem] items-center justify-center">
       <div className="w-full max-w-sm">{children}</div>
     </div>
   );
 }
 
-/** Manual updates that never end — three rows get checked off, then quietly
- *  come undone, and it all has to happen again. */
+/** Manual updates that never end — a sync gauge fills, pulses "done", then
+ *  drains and starts over. Forever. */
 function SyncLoop({ reduce }: { reduce: boolean }) {
-  const widths = ["68%", "82%", "58%"];
-  const CYCLE = 4.4;
+  const CYCLE = 3.8;
+  const times = [0, 0.5, 0.62, 1];
   return (
     <SceneFrame>
-      <div className="space-y-4">
-        {widths.map((w, i) => {
-          const t = i * 0.13;
-          const keyTimes = [0, t, t + 0.16, 0.82, 0.95];
-          return (
-            <div key={i} className="flex items-center gap-3">
-              <svg viewBox="0 0 24 24" className="size-5 shrink-0">
-                <circle cx="12" cy="12" r="9" fill="none" stroke="var(--color-line)" strokeWidth="2" />
-                <motion.path
-                  d="M7.5 12.4l3 3 6-6.4"
-                  fill="none"
-                  stroke="var(--color-gold)"
-                  strokeWidth="2.4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  initial={false}
-                  animate={
-                    reduce
-                      ? { pathLength: 1, opacity: 1 }
-                      : { pathLength: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }
-                  }
-                  transition={
-                    reduce
-                      ? undefined
-                      : { duration: CYCLE, times: keyTimes, ease: "easeInOut", repeat: Infinity }
-                  }
-                />
-              </svg>
-              <div className="h-2 flex-1 overflow-hidden rounded-full bg-line/40">
-                <motion.div
-                  className="h-full origin-left rounded-full bg-gold/70"
-                  initial={false}
-                  animate={reduce ? { width: w } : { width: ["0%", "0%", w, w, "0%"] }}
-                  transition={
-                    reduce
-                      ? undefined
-                      : { duration: CYCLE, times: keyTimes, ease: "easeInOut", repeat: Infinity }
-                  }
-                />
-              </div>
-            </div>
-          );
-        })}
+      <div className="relative mx-auto grid size-40 place-items-center">
+        <svg viewBox="0 0 100 100" className="absolute inset-0 size-full -rotate-90">
+          <defs>
+            <linearGradient id="syncArc" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="rgba(216,178,122,0.25)" />
+              <stop offset="100%" stopColor="rgba(216,178,122,1)" />
+            </linearGradient>
+          </defs>
+          <circle cx="50" cy="50" r="43" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="2.5" />
+          <motion.circle
+            cx="50"
+            cy="50"
+            r="43"
+            fill="none"
+            stroke="url(#syncArc)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            initial={false}
+            animate={reduce ? { pathLength: 0.7 } : { pathLength: [0.02, 1, 1, 0.02] }}
+            transition={reduce ? undefined : { duration: CYCLE, times, ease: "easeInOut", repeat: Infinity }}
+            style={{ filter: "drop-shadow(0 0 5px rgba(216,178,122,0.45))" }}
+          />
+        </svg>
+        {!reduce && (
+          <motion.span
+            className="absolute rounded-full border border-gold/40"
+            style={{ width: "80%", height: "80%" }}
+            animate={{ opacity: [0, 0, 0.6, 0], scale: [0.85, 0.85, 1.25, 1.4] }}
+            transition={{ duration: CYCLE, times: [0, 0.5, 0.6, 0.74], ease: "easeOut", repeat: Infinity }}
+          />
+        )}
+        <span
+          className="relative grid size-12 place-items-center rounded-full bg-gold/10"
+          style={{ boxShadow: "inset 0 0 0 1px rgba(216,178,122,0.18)" }}
+        >
+          <motion.span
+            animate={reduce ? undefined : { rotate: 360 }}
+            transition={reduce ? undefined : { duration: 2.4, ease: "linear", repeat: Infinity }}
+          >
+            <RefreshCw className="size-5 text-gold/80" strokeWidth={1.6} aria-hidden />
+          </motion.span>
+        </span>
       </div>
     </SceneFrame>
   );
 }
 
-/** Questions that pull people off real work — focus climbs, a question slams
- *  it back to zero, over and over. */
+/** Questions that pull people off real work — a calm focus orb keeps trying to
+ *  brighten, and incoming questions keep knocking it down. */
 function QuestionPileup({ reduce }: { reduce: boolean }) {
-  const CYCLE = 3.4;
+  const CYCLE = 3.2;
+  const rows = [22, 50, 78];
   return (
     <SceneFrame>
-      <div className="space-y-7">
-        <div className="flex h-9 justify-end">
-          <motion.div
-            className="flex items-center gap-2 rounded-2xl rounded-br-sm border border-line/70 bg-gold/[0.05] px-3 py-2"
-            initial={false}
+      <div className="relative flex h-36 items-center justify-center">
+        <motion.span
+          className="relative z-10 grid size-16 place-items-center rounded-full"
+          style={{ background: "radial-gradient(circle at 38% 32%, rgba(216,178,122,0.45), rgba(216,178,122,0.06) 72%)" }}
+          animate={reduce ? undefined : { scale: [1, 1.06, 0.82, 0.92, 1] }}
+          transition={reduce ? undefined : { duration: CYCLE, times: [0, 0.42, 0.52, 0.7, 1], ease: "easeInOut", repeat: Infinity }}
+        >
+          <motion.span
+            className="absolute inset-0 rounded-full"
             animate={
               reduce
-                ? { opacity: 1, x: 0 }
-                : { opacity: [0, 0, 1, 1, 0], x: [40, 40, 0, 0, 12] }
+                ? undefined
+                : {
+                    boxShadow: [
+                      "0 0 18px rgba(216,178,122,0.25)",
+                      "0 0 30px rgba(216,178,122,0.4)",
+                      "0 0 8px rgba(216,178,122,0.12)",
+                      "0 0 18px rgba(216,178,122,0.25)",
+                    ],
+                  }
             }
+            transition={reduce ? undefined : { duration: CYCLE, times: [0, 0.42, 0.55, 1], ease: "easeInOut", repeat: Infinity }}
+          />
+          <Target className="relative size-6 text-gold" strokeWidth={1.4} aria-hidden />
+        </motion.span>
+        {rows.map((top, i) => (
+          <motion.span
+            key={i}
+            className="absolute right-1 flex items-center gap-1.5 rounded-full border border-white/[0.14] bg-canvas/80 px-2.5 py-1 backdrop-blur-sm"
+            style={{ top: `${top}%` }}
+            initial={false}
+            animate={reduce ? { opacity: 0.35, x: -30 } : { x: [70, -90], opacity: [0, 1, 1, 0] }}
             transition={
               reduce
                 ? undefined
-                : { duration: CYCLE, times: [0, 0.42, 0.58, 0.82, 1], ease: [0.16, 1, 0.3, 1], repeat: Infinity }
+                : { duration: 1.5, delay: i * 0.45, times: [0, 0.22, 0.7, 1], ease: "easeIn", repeat: Infinity, repeatDelay: Math.max(0.2, CYCLE - 1.5) }
             }
           >
-            <MessageSquare className="size-4 text-gold" strokeWidth={1.5} aria-hidden />
-            <span className="font-mono text-sm text-gold">?</span>
-          </motion.div>
-        </div>
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-line/40">
-          <motion.div
-            className="h-full origin-left rounded-full bg-gold"
-            initial={false}
-            animate={reduce ? { width: "58%" } : { width: ["8%", "66%", "8%", "8%"] }}
-            transition={
-              reduce
-                ? undefined
-                : { duration: CYCLE, times: [0, 0.54, 0.64, 1], ease: ["easeOut", "easeIn", "linear"], repeat: Infinity }
-            }
-          />
-        </div>
+            <MessageSquare className="size-3.5 text-gold/80" strokeWidth={1.6} aria-hidden />
+            <span className="font-mono text-xs text-gold">?</span>
+          </motion.span>
+        ))}
       </div>
     </SceneFrame>
   );
 }
 
-/** Tasks that pile up after hours — a moonlit queue that keeps coming, drifting
- *  down endlessly through a soft mask (no reset seam). */
+/** Tasks that pile up after hours — a glowing moon, a quiet starfield, and an
+ *  endless masked queue drifting down through the night. */
 function AfterHoursStack({ reduce }: { reduce: boolean }) {
   const widths = ["72%", "56%", "80%", "62%", "74%"];
   const row = (key: string, w: string) => (
     <div
       key={key}
-      className="mb-2.5 flex items-center gap-2.5 rounded-lg border border-line/55 bg-white/[0.02] px-3 py-2.5"
+      className="mb-2.5 flex items-center gap-2.5 rounded-lg border border-white/10 bg-linear-to-r from-white/[0.09] to-white/[0.02] px-3 py-2.5"
     >
-      <span className="size-1.5 shrink-0 rounded-full bg-gold/50" />
-      <span className="h-2 rounded-full bg-line/70" style={{ width: w }} />
+      <span className="h-4 w-0.5 shrink-0 rounded-full bg-gold" />
+      <span className="h-2 rounded-full bg-white/25" style={{ width: w }} />
     </div>
   );
-  const mask = "linear-gradient(to bottom, transparent, #000 16%, #000 84%, transparent)";
+  const mask = "linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent)";
+  const stars: [number, number][] = [[8, 20], [78, 10], [60, 34], [26, 46]];
   return (
     <SceneFrame>
-      <div className="mb-3 flex justify-end">
-        <Moon className="size-5 text-gold/80" strokeWidth={1.5} aria-hidden />
+      <div className="relative mb-3 flex h-7 justify-end">
+        {stars.map(([x, y], i) => (
+          <motion.span
+            key={i}
+            className="absolute size-0.5 rounded-full bg-white/70"
+            style={{ right: `${x}%`, top: `${y}%` }}
+            animate={reduce ? undefined : { opacity: [0.2, 1, 0.2] }}
+            transition={reduce ? undefined : { duration: 2.4, delay: i * 0.5, ease: "easeInOut", repeat: Infinity }}
+          />
+        ))}
+        <span className="relative grid size-7 place-items-center rounded-full" style={{ boxShadow: "0 0 16px 1px rgba(216,178,122,0.4)" }}>
+          <Moon className="size-5 text-gold/90" strokeWidth={1.5} aria-hidden />
+        </span>
       </div>
       <div className="h-40 overflow-hidden" style={{ maskImage: mask, WebkitMaskImage: mask }}>
         <motion.div
           animate={reduce ? undefined : { y: ["-50%", "0%"] }}
-          transition={reduce ? undefined : { duration: 11, ease: "linear", repeat: Infinity }}
+          transition={reduce ? undefined : { duration: 12, ease: "linear", repeat: Infinity }}
         >
           {widths.map((w, i) => row("a" + i, w))}
           {widths.map((w, i) => row("b" + i, w))}
@@ -292,119 +341,136 @@ function AfterHoursStack({ reduce }: { reduce: boolean }) {
   );
 }
 
-/** Tools that don't talk — data leaves one app, reaches the broken link, and
- *  dies in the gap before it ever arrives. */
+/** Tools that don't talk — data leaves one glowing app, reaches the sparking
+ *  break, and shatters into particles before it ever arrives. */
 function BrokenConnections({ reduce }: { reduce: boolean }) {
+  const CYCLE = 2.4;
+  const tile = (Glyph: typeof Database) => (
+    <span
+      className="relative grid size-14 shrink-0 place-items-center rounded-xl border border-white/[0.14] bg-linear-to-b from-white/[0.10] to-white/[0.02]"
+      style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), 0 10px 24px -14px rgba(0,0,0,0.9)" }}
+    >
+      <Glyph className="size-5 text-ink/80" strokeWidth={1.5} aria-hidden />
+    </span>
+  );
+  const particles: [number, number][] = [[-10, -12], [8, -14], [-14, 6], [12, 8], [0, 16]];
   return (
     <SceneFrame>
       <div className="flex items-center">
-        <span className="grid size-12 shrink-0 place-items-center rounded-xl border border-line/70 bg-white/[0.02]">
-          <Database className="size-5 text-muted" strokeWidth={1.5} aria-hidden />
-        </span>
-        <div className="relative mx-3 h-10 flex-1">
-          <span className="absolute left-0 top-1/2 h-px w-[40%] -translate-y-1/2 bg-line/60" />
-          <span className="absolute right-0 top-1/2 h-px w-[40%] -translate-y-1/2 bg-line/60" />
-          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <Unplug className="size-4 text-faint" strokeWidth={1.5} aria-hidden />
-          </span>
+        {tile(Database)}
+        <div className="relative mx-3 h-12 flex-1">
+          <span className="absolute left-0 top-1/2 h-px w-[38%] -translate-y-1/2 bg-linear-to-r from-transparent to-line" />
+          <span className="absolute right-0 top-1/2 h-px w-[38%] -translate-y-1/2 bg-linear-to-l from-transparent to-line" />
           <motion.span
-            className="absolute top-1/2 left-0 size-2 rounded-full bg-gold"
+            className="absolute left-1/2 top-1/2 size-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold"
+            style={{ boxShadow: "0 0 8px rgba(216,178,122,0.7)" }}
+            animate={reduce ? undefined : { opacity: [0.3, 1, 0.3], scale: [1, 1.4, 1] }}
+            transition={reduce ? undefined : { duration: 0.8, ease: "easeInOut", repeat: Infinity }}
+          />
+          <motion.span
+            className="absolute left-0 top-1/2 size-2 rounded-full bg-gold"
+            style={{ boxShadow: "0 0 10px rgba(216,178,122,0.7)" }}
             initial={false}
             animate={
               reduce
-                ? { left: "18%", opacity: 0.35, y: -4 }
-                : { left: ["2%", "36%", "40%"], opacity: [0, 1, 0], scale: [0.8, 1, 0.3], y: -4 }
+                ? { left: "20%", opacity: 0.4, y: -4 }
+                : { left: ["4%", "42%", "46%"], opacity: [0, 1, 0], scale: [0.7, 1, 0.4], y: -4 }
             }
-            transition={
-              reduce
-                ? undefined
-                : { duration: 2, times: [0, 0.7, 1], ease: "easeIn", repeat: Infinity, repeatDelay: 0.7 }
-            }
+            transition={reduce ? undefined : { duration: CYCLE, times: [0, 0.62, 0.72], ease: "easeIn", repeat: Infinity, repeatDelay: 0.5 }}
           />
+          {!reduce &&
+            particles.map(([dx, dy], i) => (
+              <motion.span
+                key={i}
+                className="absolute left-1/2 top-1/2 size-0.5 rounded-full bg-gold"
+                animate={{ x: [0, 0, dx, dx], y: [-4, -4, dy - 4, dy - 4], opacity: [0, 0, 1, 0] }}
+                transition={{ duration: CYCLE, times: [0, 0.62, 0.72, 0.82], ease: "easeOut", repeat: Infinity, repeatDelay: 0.5 }}
+              />
+            ))}
         </div>
-        <span className="grid size-12 shrink-0 place-items-center rounded-xl border border-line/70 bg-white/[0.02]">
-          <Mail className="size-5 text-muted" strokeWidth={1.5} aria-hidden />
-        </span>
+        {tile(Mail)}
       </div>
     </SceneFrame>
   );
 }
 
-/** Answers that arrive too slowly — a request lurches forward, stalls, lurches,
- *  and never quite arrives, while a slow hand sweeps the clock. */
+/** Answers that arrive too slowly — a slow-sweeping clock, and a request that
+ *  lurches, stalls, and fades out before it ever reaches the answer. */
 function SlowAnswer({ reduce }: { reduce: boolean }) {
-  const CYCLE = 6;
+  const CYCLE = 6.5;
   return (
     <SceneFrame>
-      <div className="flex items-center justify-between">
-        <span className="grid size-10 place-items-center rounded-xl bg-gold/10">
-          <span className="relative size-5 rounded-full border border-gold/40">
+      <div className="space-y-8">
+        <div className="flex justify-center">
+          <span className="relative size-9 rounded-full border border-gold/40" style={{ boxShadow: "0 0 14px -2px rgba(216,178,122,0.4)" }}>
             <motion.span
               className="absolute inset-0"
               animate={reduce ? undefined : { rotate: 360 }}
               transition={reduce ? undefined : { duration: CYCLE, ease: "linear", repeat: Infinity }}
             >
-              <span className="absolute left-1/2 top-0 size-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold" />
+              <span className="absolute left-1/2 top-1 size-1 -translate-x-1/2 rounded-full bg-gold" style={{ boxShadow: "0 0 6px rgba(216,178,122,0.8)" }} />
             </motion.span>
+            <span className="absolute left-1/2 top-1/2 size-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/60" />
           </span>
-        </span>
-        <span className="rounded-2xl rounded-bl-sm border border-line/60 px-3.5 py-2.5">
+        </div>
+        <div className="relative">
+          <div className="h-px w-full bg-white/[0.15]" />
+          <span className="absolute -top-1 left-0 size-2 rounded-full border border-white/[0.18] bg-canvas" />
+          <span className="absolute right-0 -top-[3px] size-2.5 rounded-full border border-gold/70 bg-canvas" style={{ boxShadow: "0 0 10px -2px rgba(216,178,122,0.6)" }} />
           <motion.span
-            className="block size-1.5 rounded-full bg-faint"
-            animate={reduce ? undefined : { opacity: [0.3, 1, 0.3] }}
-            transition={reduce ? undefined : { duration: 1.8, ease: "easeInOut", repeat: Infinity }}
+            className="absolute -top-[3px] left-0 size-2.5 rounded-full bg-gold"
+            style={{ boxShadow: "0 0 12px rgba(216,178,122,0.7)" }}
+            initial={false}
+            animate={
+              reduce
+                ? { left: "60%", opacity: 1 }
+                : { left: ["0%", "14%", "16%", "44%", "46%", "74%", "76%"], opacity: [1, 1, 1, 1, 1, 1, 0] }
+            }
+            transition={reduce ? undefined : { duration: CYCLE, times: [0, 0.14, 0.34, 0.5, 0.7, 0.92, 1], ease: "easeInOut", repeat: Infinity }}
           />
-        </span>
-      </div>
-      <div className="mt-7 h-1.5 w-full overflow-hidden rounded-full bg-line/40">
-        <motion.div
-          className="h-full origin-left rounded-full bg-gold"
-          initial={false}
-          animate={
-            reduce
-              ? { width: "78%", opacity: 1 }
-              : {
-                  width: ["4%", "22%", "24%", "55%", "57%", "84%", "86%"],
-                  opacity: [1, 1, 1, 1, 1, 1, 0],
-                }
-          }
-          transition={
-            reduce
-              ? undefined
-              : { duration: CYCLE, times: [0, 0.16, 0.34, 0.5, 0.68, 0.92, 1], ease: "easeInOut", repeat: Infinity }
-          }
-        />
+        </div>
       </div>
     </SceneFrame>
   );
 }
 
-/** Repetitive work no one should own — the exact same card, stamped out again
- *  and again, scrolling past forever. */
+/** Repetitive work no one should own — identical cards file past a fixed beam
+ *  of light, each one stamped exactly the same, endlessly. */
 function RepetitiveRows({ reduce }: { reduce: boolean }) {
   const card = (key: string) => (
     <div
       key={key}
-      className="mr-3 flex w-24 shrink-0 flex-col gap-2 rounded-lg border border-line/55 bg-white/[0.02] p-3"
+      className="mr-3 flex w-24 shrink-0 flex-col gap-2 rounded-lg border border-white/10 bg-linear-to-b from-white/[0.09] to-white/[0.02] p-3"
     >
-      <Copy className="size-3.5 text-gold/60" strokeWidth={1.5} aria-hidden />
-      <span className="h-1.5 w-full rounded-full bg-line/70" />
-      <span className="h-1.5 w-2/3 rounded-full bg-line/55" />
+      <Copy className="size-3.5 text-gold" strokeWidth={1.5} aria-hidden />
+      <span className="h-1.5 w-full rounded-full bg-white/25" />
+      <span className="h-1.5 w-2/3 rounded-full bg-white/[0.15]" />
     </div>
   );
-  const mask = "linear-gradient(to right, transparent, #000 10%, #000 90%, transparent)";
+  const mask = "linear-gradient(to right, transparent, #000 12%, #000 88%, transparent)";
   const set = [0, 1, 2, 3, 4];
   return (
     <SceneFrame>
-      <div className="overflow-hidden" style={{ maskImage: mask, WebkitMaskImage: mask }}>
-        <motion.div
-          className="flex"
-          animate={reduce ? undefined : { x: ["0%", "-50%"] }}
-          transition={reduce ? undefined : { duration: 8, ease: "linear", repeat: Infinity }}
-        >
-          {set.map((i) => card("a" + i))}
-          {set.map((i) => card("b" + i))}
-        </motion.div>
+      <div className="relative">
+        <div className="overflow-hidden" style={{ maskImage: mask, WebkitMaskImage: mask }}>
+          <motion.div
+            className="flex"
+            animate={reduce ? undefined : { x: ["0%", "-50%"] }}
+            transition={reduce ? undefined : { duration: 9, ease: "linear", repeat: Infinity }}
+          >
+            {set.map((i) => card("a" + i))}
+            {set.map((i) => card("b" + i))}
+          </motion.div>
+        </div>
+        <div aria-hidden className="pointer-events-none absolute inset-y-0 left-1/2 w-16 -translate-x-1/2">
+          <motion.div
+            className="h-full w-full"
+            style={{ background: "linear-gradient(to right, transparent, rgba(216,178,122,0.16), transparent)" }}
+            animate={reduce ? undefined : { opacity: [0.5, 1, 0.5] }}
+            transition={reduce ? undefined : { duration: 1.6, ease: "easeInOut", repeat: Infinity }}
+          />
+          <span className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-gold/40" />
+        </div>
       </div>
     </SceneFrame>
   );
